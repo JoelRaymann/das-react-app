@@ -1,0 +1,57 @@
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: white;
+  align-items: center;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  border: 1px solid transparent;
+  box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.8);
+  width: 600px;
+  height: 450px;
+  border-radius: 8px;
+
+  .login-title {
+    text-transform: uppercase;
+    margin: 20px 0 0 0;
+    letter-spacing: 0.02em;
+  }
+
+  .login-form {
+    width: 500px;
+    height: 375px;
+    margin: 0 0 20px 0;
+    position: relative;
+
+    .password-forgot {
+      position: absolute;
+      text-decoration: none;
+      font-size: 14px;
+      left: 360px;
+      top: 200px;
+      color: #858585;
+    }
+
+    .button-container {
+      margin-top: 50px;
+      display: flex;
+      cursor: pointer;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .register {
+      margin-top: 20px;
+      text-transform: uppercase;
+
+      a {
+        cursor: pointer;
+        text-decoration: none;
+        font-weight: 600;
+        color: #007aff;
+      }
+    }
+  }
+}

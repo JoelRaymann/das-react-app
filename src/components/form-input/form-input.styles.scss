@@ -1,0 +1,73 @@
+.form-input-container {
+  position: relative;
+  margin: 45px 15px;
+  max-width: 500px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding: 10px 5px;
+  border: 1px solid transparent;
+  border-bottom: 1px solid #333333;
+  transition: 500ms ease-in-out all;
+
+  &.focus {
+    border-bottom-color: rgb(0, 122, 255);
+  }
+
+  .form-input-icon {
+    margin: 0 5px 0 0;
+    filter: invert(13%) sepia(0%) saturate(1199%) hue-rotate(192deg)
+      brightness(95%) contrast(79%);
+    width: 25px;
+    height: 25px;
+    transition: 300ms ease-in-out all;
+
+    &.focus {
+      filter: invert(31%) sepia(88%) saturate(3102%) hue-rotate(201deg)
+        brightness(103%) contrast(107%);
+    }
+  }
+
+  .form-input {
+    position: relative;
+    top: 2.5px;
+    margin: 0 2.5px;
+    font-family: "Poppins", sans-serif;
+    background: none;
+    border: none;
+    width: 100%;
+    outline: none;
+    font-size: 18px;
+    letter-spacing: 1px;
+
+    &[type="password"] {
+      &::placeholder {
+        letter-spacing: 1px;
+      }
+      letter-spacing: 0.2em;
+    }
+
+    &:focus + .form-input-label {
+      top: -10px;
+      font-size: 12px;
+      color: #b1b1b1;
+    }
+  }
+
+  .form-input-label {
+    pointer-events: none;
+    left: 40px;
+    top: 12px;
+    position: absolute;
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    text-transform: capitalize;
+    transition: 300ms ease all;
+
+    &.shrink {
+      top: -10px;
+      font-size: 12px;
+      color: #b1b1b1;
+    }
+  }
+}
