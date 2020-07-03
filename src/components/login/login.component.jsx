@@ -1,20 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 import { Link, useHistory } from "react-router-dom";
 
 import FormInputComponent from "../form-input/form-input.component";
 import ButtonComponent from "../button/button.component";
+import ButtonSpinnerComponent from "../button-spinner/button-spinner.component";
 
 import { userSignInStart } from "../../redux/user/user.actions";
 
+import {
+  selectCurrentUser,
+  selectSessionToken,
+} from "../../redux/user/user.selectors";
+
 import "./login.styles.scss";
 
-function LoginComponent({ userSignInStart }) {
+function LoginComponent({ userSignInStart, currentUser, sessionToken }) {
   const history = useHistory();
   // Define states
   const [userCredentials, setUserCredentials] = useState({
     username: "",
     password: "",
+  });
+  const [spinners, toggleSpinners] = useState({
+    signInSpinner: false,
+    googleSpinner: false,
   });
 
   /**
@@ -41,8 +52,13 @@ function LoginComponent({ userSignInStart }) {
 
     const { username, password } = userCredentials;
     userSignInStart(username, password);
-    history.push("/course-page");
   }
+
+  useEffect(() => {
+    if (currentUser && sessionToken) {
+      history.push("/course-page");
+    }
+  }, [currentUser, sessionToken, history]);
 
   // Render
   return (
@@ -67,7 +83,7 @@ function LoginComponent({ userSignInStart }) {
           value={userCredentials.password}
           required
         />
-        <Link href="#" className="password-forgot">
+        <Link to="#" className="password-forgot">
           Forgot Password?
         </Link>
         <div className="button-container">
@@ -78,28 +94,52 @@ function LoginComponent({ userSignInStart }) {
             secondaryColor="#ffffff"
             secondaryTextColor="#007aff"
             value="Submit Login"
+            onClick={() =>
+              toggleSpinners({
+                ...spinners,
+                signInSpinner: !spinners.signInSpinner,
+              })
+            }
           >
-            Sign In
+            {spinners.signInSpinner ? <ButtonSpinnerComponent /> : "Sign In"}
           </ButtonComponent>
           <ButtonComponent
             type="button"
             specialClassStyle="google-sign-in"
+            onClick={() =>
+              toggleSpinners({
+                ...spinners,
+                googleSpinner: !spinners.googleSpinner,
+              })
+            }
             value="Submit Login"
           >
-            Google Sign In
+            {spinners.googleSpinner ? (
+              <ButtonSpinnerComponent />
+            ) : (
+              "Google Sign In"
+            )}
           </ButtonComponent>
         </div>
         <p className="register">
-          Don't have an account? <Link href="#">Sign Up</Link>
+          Don't have an account?{" "}
+          <Link className="register-link" to="/register">
+            Sign Up
+          </Link>
         </p>
       </form>
     </div>
   );
 }
 
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+  sessionToken: selectSessionToken,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   userSignInStart: (username, password) =>
     dispatch(userSignInStart(username, password)),
 });
 
-export default connect(null, mapDispatchToProps)(LoginComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginComponent);

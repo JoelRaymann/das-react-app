@@ -1,0 +1,108 @@
+.course-card-container {
+  position: relative;
+  font-family: "Poppins", sans-serif;
+  margin: 10px 40px;
+
+  .course-card-header {
+    width: 300px;
+    height: 200px;
+    transition: 0.5s;
+    position: relative;
+    background-color: #23232e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    transform: translateY(100px);
+
+    .course-card-header-content {
+      opacity: 0.3;
+      transition: 0.5s;
+
+      .course-icon {
+        max-width: 100px;
+        filter: invert(83%) sepia(80%) saturate(1%) hue-rotate(71deg)
+          brightness(109%) contrast(102%);
+      }
+
+      .course-code {
+        text-transform: uppercase;
+        margin: 10px 0 0;
+        padding: 0;
+        color: #ffffff;
+        font-size: 1.5em;
+      }
+    }
+  }
+
+  .course-card-body {
+    width: 300px;
+    height: 200px;
+    transition: 0.5s;
+    position: relative;
+    background: whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 0 0.5rem 0.5rem 0.1rem rgba(70, 70, 70, 0.8);
+    transform: translateY(-100px);
+
+    .course-card-body-content {
+      .course-slot,
+      .course-name {
+        margin: 5px;
+        text-align: left;
+        padding: 0;
+        text-overflow: ellipsis;
+      }
+
+      .button-container {
+        display: flex;
+        width: 250px;
+        justify-content: space-between;
+        margin: 30px 0 0 0;
+
+        .course-button {
+          outline: none;
+          font-weight: 900;
+          width: auto;
+          padding: 7.5px 7.5px !important;
+          border: 1px solid #007aff;
+          border-radius: 4px;
+          background-color: #ffffff;
+          color: #333333;
+          transition: 300ms ease-in-out all;
+          padding: 5px;
+
+          &:hover {
+            background: #007aff;
+            box-shadow: 0 0.5rem 0.5rem 0.1rem rgba(70, 70, 70, 0.8);
+            border-color: transparent;
+            color: #ffffff;
+          }
+        }
+      }
+    }
+  }
+
+  &:hover {
+    .course-card-header {
+      transform: translateY(0);
+      background-color: #007aff;
+    }
+
+    .course-card-header-content {
+      opacity: 1;
+
+      .course-icon {
+        max-width: 100px;
+      }
+    }
+
+    .course-card-body {
+      transform: translateY(0);
+    }
+  }
+}

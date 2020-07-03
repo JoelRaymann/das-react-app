@@ -1,0 +1,63 @@
+$text-primary: #b6b6b6;
+$text-secondary: #ececec;
+$bg-primary: #23232e;
+$bg-secondary: #141414;
+
+.popover-container {
+  display: block;
+  background-color: $bg-primary;
+  border: 0.5px solid $bg-secondary;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 0.5rem 0.1rem rgba(70, 70, 70, 0.8);
+  position: absolute;
+  width: 25rem;
+  right: 1rem;
+  top: 4.5rem;
+  z-index: 2;
+
+  .popover-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    height: 29rem;
+    width: 100%;
+
+    .popover-header-container {
+      width: 100%;
+
+      .popover-header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 12.5rem;
+
+        .user-profile {
+          filter: invert(100%) sepia(7%) saturate(0%) hue-rotate(106deg)
+            brightness(111%) contrast(100%);
+          width: 2rem;
+          margin: 1.5rem 1.5rem;
+          padding: 0.25rem;
+          border-radius: 50%;
+          border: 1px solid $bg-secondary;
+        }
+
+        .header-text {
+          color: $text-primary;
+          text-transform: uppercase;
+          font-weight: bold;
+          letter-spacing: 0.1ch;
+          font-size: 1.25rem;
+        }
+      }
+
+      .popover-item {
+        width: 100%;
+
+        &:last-child {
+          margin-top: auto;
+        }
+      }
+    }
+  }
+}

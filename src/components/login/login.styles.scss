@@ -2,15 +2,15 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: white;
+  background-color: whitesmoke;
   align-items: center;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
   border: 1px solid transparent;
+  border-radius: 8px;
   box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.8);
   width: 600px;
   height: 450px;
-  border-radius: 8px;
 
   .login-title {
     text-transform: uppercase;
@@ -27,6 +27,7 @@
     .password-forgot {
       position: absolute;
       text-decoration: none;
+      cursor: pointer;
       font-size: 14px;
       left: 360px;
       top: 200px;
@@ -36,7 +37,6 @@
     .button-container {
       margin-top: 50px;
       display: flex;
-      cursor: pointer;
       flex-direction: row;
       justify-content: space-around;
       align-items: center;
@@ -46,7 +46,7 @@
       margin-top: 20px;
       text-transform: uppercase;
 
-      a {
+      .register-link {
         cursor: pointer;
         text-decoration: none;
         font-weight: 600;

@@ -70,6 +70,7 @@ const ButtonColorStyles = (props) => {
 };
 
 export const ButtonStyles = styled.button`
+  outline: none;
   min-width: 200px;
   max-width: 300px;
   height: 50px;

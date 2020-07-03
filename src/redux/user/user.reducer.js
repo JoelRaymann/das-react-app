@@ -32,8 +32,28 @@ function userReducer(state = INITIAL_STATE, action) {
         error: null,
       };
 
-    // Handle a failed user authentication
+    // Handle a successful registration process
+    case UserActionTypes.REGISTER_SUCCESS:
+      return {
+        ...state,
+        currentUser: null,
+        token: null,
+        error: null,
+      };
+
+    // Handle a successful sign-out process
+    case UserActionTypes.SIGN_OUT_SUCCESS:
+      return {
+        ...state,
+        currentUser: null,
+        token: null,
+        error: null,
+      };
+
+    // Handle a failed user process
     case UserActionTypes.SIGN_IN_FAILURE:
+    case UserActionTypes.REGISTER_FAILURE:
+    case UserActionTypes.SIGN_OUT_FAILURE:
       return {
         ...state,
         currentUser: null,

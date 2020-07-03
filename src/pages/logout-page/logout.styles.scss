@@ -1,0 +1,31 @@
+.logout-page-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .logout-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: whitesmoke;
+    align-items: center;
+    box-sizing: border-box;
+    border: 1px solid #d4d4d4;
+    border-radius: 8px;
+    box-shadow: 0px 0.5rem 0.5rem 0.1rem rgba(70, 70, 70, 0.8);
+    width: 600px;
+    height: 200px;
+
+    .logout-message {
+      font-family: "Poppins", sans-serif;
+    }
+
+    .logout-button-container {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+}

@@ -1,0 +1,29 @@
+.menu-navbar-container {
+  top: 0;
+  width: 100vw;
+  height: 4rem;
+  background-color: #23232e;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+
+  .menu-navbar-brand {
+    color: #ffffff;
+    font-size: 2rem;
+    margin: 0.5rem 1rem;
+    margin-right: auto;
+    text-transform: uppercase;
+    letter-spacing: 0.1ch;
+    height: 4rem;
+  }
+
+  .menu-navbar-item-container {
+    width: auto;
+
+    &:last-child {
+      margin: 0 1rem 0 0;
+    }
+  }
+}

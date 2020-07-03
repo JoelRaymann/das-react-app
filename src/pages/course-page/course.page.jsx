@@ -2,10 +2,10 @@ import React from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
-import {
-  selectCurrentUser,
-  selectSessionToken,
-} from "../../redux/user/user.selectors";
+import CourseCanvasComponent from "../../components/course-canvas/course-canvas.component";
+import MenuNavbarComponent from "../../components/menu-navbar/menu-navbar.component";
+
+import { selectCurrentUser } from "../../redux/user/user.selectors";
 
 import "./course.styles.scss";
 
@@ -14,17 +14,17 @@ import "./course.styles.scss";
  *
  * @param {React.Props} props - The properties needed for the course-page.
  */
-function CoursePage(props) {
+function CoursePage({ currentUser }) {
   return (
     <div className="course-page-container">
-      <h1>Welcome to course page</h1>
+      <MenuNavbarComponent user={currentUser} />
+      <CourseCanvasComponent />
     </div>
   );
 }
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
-  token: selectSessionToken,
 });
 
 export default connect(mapStateToProps)(CoursePage);
