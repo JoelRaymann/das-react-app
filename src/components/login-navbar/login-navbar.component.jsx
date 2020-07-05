@@ -11,7 +11,10 @@ function LoginNavbarComponent() {
       <div className="login-navbar-item-container">
         <NavItemComponent
           to="/login"
-          iconSrc="./assets/icons/login-nav-icons/login_icon.svg"
+          iconSrc={
+            process.env.PUBLIC_URL +
+            "/assets/icons/login-nav-icons/login_icon.svg"
+          }
           $secondaryIconColor="#007aff"
           $iconAnimation="enlarge"
           $disableIconPopover
@@ -22,7 +25,10 @@ function LoginNavbarComponent() {
       <div className="login-navbar-item-container">
         <NavItemComponent
           to="/register"
-          iconSrc="./assets/icons/login-nav-icons/register_icon.svg"
+          iconSrc={
+            process.env.PUBLIC_URL +
+            "/assets/icons/login-nav-icons/register_icon.svg"
+          }
           $secondaryIconColor="#00ff7a"
           $iconAnimation="enlarge"
           $disableIconPopover

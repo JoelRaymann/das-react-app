@@ -20,7 +20,10 @@ function PopoverComponent({ currentUser, sessionToken, userSignOutStart }) {
         <li className="popover-header-container">
           <div className="popover-header">
             <img
-              src="./assets/icons/nav-option-icons/user_icon.svg"
+              src={
+                process.env.PUBLIC_URL +
+                "/assets/icons/nav-option-icons/user_icon.svg"
+              }
               alt="user-profile"
               className="user-profile"
             />
@@ -30,7 +33,10 @@ function PopoverComponent({ currentUser, sessionToken, userSignOutStart }) {
         <li className="popover-item">
           <NavItemComponent
             to="#"
-            iconSrc="./assets/icons/nav-option-icons/add_course_icon.svg"
+            iconSrc={
+              process.env.PUBLIC_URL +
+              "/assets/icons/nav-option-icons/add_course_icon.svg"
+            }
             $secondaryIconColor="00ff00"
             $disableIconPopover
           >
@@ -40,7 +46,10 @@ function PopoverComponent({ currentUser, sessionToken, userSignOutStart }) {
         <li className="popover-item">
           <NavItemComponent
             to="#"
-            iconSrc="./assets/icons/nav-option-icons/user_icon.svg"
+            iconSrc={
+              process.env.PUBLIC_URL +
+              "/assets/icons/nav-option-icons/user_icon.svg"
+            }
             $disableIconPopover
           >
             View Profile
@@ -49,7 +58,10 @@ function PopoverComponent({ currentUser, sessionToken, userSignOutStart }) {
         <li className="popover-item">
           <NavItemComponent
             to="#"
-            iconSrc="./assets/icons/nav-option-icons/settings_icon.svg"
+            iconSrc={
+              process.env.PUBLIC_URL +
+              "/assets/icons/nav-option-icons/settings_icon.svg"
+            }
             $secondaryIconColor="ffff00"
             $iconAnimation="rotate"
             $disableIconPopover
@@ -63,7 +75,10 @@ function PopoverComponent({ currentUser, sessionToken, userSignOutStart }) {
         >
           <NavItemComponent
             to="/logout"
-            iconSrc="./assets/icons/nav-option-icons/logout_icon.svg"
+            iconSrc={
+              process.env.PUBLIC_URL +
+              "/assets/icons/nav-option-icons/logout_icon.svg"
+            }
             $secondaryIconColor="ff0000"
             $iconAnimation="enlarge"
             $disableIconPopover

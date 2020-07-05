@@ -111,10 +111,6 @@ function RegisterComponent(props) {
         <div className="button-container">
           <ButtonComponent
             type="submit"
-            primaryColor="#007aff"
-            primaryTextColor="#ffffff"
-            secondaryColor="#ffffff"
-            secondaryTextColor="#007aff"
             value="Submit Register"
             onClick={() =>
               toggleSpinners({
@@ -122,12 +118,15 @@ function RegisterComponent(props) {
                 registerSpinner: !spinners.registerSpinner,
               })
             }
+            $primaryColor="#007aff"
+            $primaryTextColor="#ffffff"
+            $secondaryColor="#ffffff"
+            $secondaryTextColor="#007aff"
           >
             {spinners.registerSpinner ? <ButtonSpinnerComponent /> : "Login"}
           </ButtonComponent>
           <ButtonComponent
             type="button"
-            specialClassStyle="google-sign-in"
             value="Submit Register"
             onClick={() =>
               toggleSpinners({
@@ -135,6 +134,7 @@ function RegisterComponent(props) {
                 googleRegisterSpinner: !spinners.googleRegisterSpinner,
               })
             }
+            $specialClassStyle="google-sign-in"
           >
             {spinners.googleRegisterSpinner ? (
               <ButtonSpinnerComponent />

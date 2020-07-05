@@ -7,6 +7,11 @@ export const selectCourseList = createSelector(
   (course) => course.courseList
 );
 
+export const selectCourseFromCourseList = (courseCode) =>
+  createSelector([selectCourseList], (courseList) =>
+    courseList.find((course) => course.courseCode === courseCode)
+  );
+
 export const selectFetchingCourseList = createSelector(
   [selectCourse],
   (course) => course.fetchingCourseList

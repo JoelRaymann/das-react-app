@@ -13,21 +13,21 @@ import styled, { css } from "styled-components";
  * @returns {CSS} - A styled CSS component
  */
 const setButtonColor = (
-  primaryColor,
-  primaryTextColor,
-  secondaryColor,
-  secondaryTextColor,
+  $primaryColor,
+  $primaryTextColor,
+  $secondaryColor,
+  $secondaryTextColor,
   inverted = false
 ) => {
   return css`
-    background-color: ${primaryColor};
-    color: ${primaryTextColor};
-    border: ${inverted ? `1px solid ${primaryTextColor}` : `none`};
+    background-color: ${$primaryColor};
+    color: ${$primaryTextColor};
+    border: ${inverted ? `1px solid ${$primaryTextColor}` : `none`};
 
     &:hover {
-      background-color: ${secondaryColor};
-      color: ${secondaryTextColor};
-      border: ${inverted ? `none` : `1px solid ${primaryColor}`};
+      background-color: ${$secondaryColor};
+      color: ${$secondaryTextColor};
+      border: ${inverted ? `none` : `1px solid ${$primaryColor}`};
     }
   `;
 };
@@ -37,8 +37,8 @@ const setButtonColor = (
 // to render the button styles
 const ButtonColorStyles = (props) => {
   // Handle special class styles
-  if (props.specialClassStyle) {
-    switch (props.specialClassStyle) {
+  if (props.$specialClassStyle) {
+    switch (props.$specialClassStyle) {
       case "google-sign-in":
         return setButtonColor("#DB4437", "white", "white", "#DB4437");
       case "inverted-button":
@@ -47,22 +47,22 @@ const ButtonColorStyles = (props) => {
         return setButtonColor("black", "white", "white", "black");
     }
   } else if (
-    props.primaryColor &&
-    props.primaryTextColor &&
-    props.secondaryColor &&
-    props.secondaryTextColor
+    props.$primaryColor &&
+    props.$primaryTextColor &&
+    props.$secondaryColor &&
+    props.$secondaryTextColor
   ) {
     const {
-      primaryColor,
-      primaryTextColor,
-      secondaryColor,
-      secondaryTextColor,
+      $primaryColor,
+      $primaryTextColor,
+      $secondaryColor,
+      $secondaryTextColor,
     } = props;
     return setButtonColor(
-      primaryColor,
-      primaryTextColor,
-      secondaryColor,
-      secondaryTextColor
+      $primaryColor,
+      $primaryTextColor,
+      $secondaryColor,
+      $secondaryTextColor
     );
   } else {
     return setButtonColor("black", "white", "white", "black");

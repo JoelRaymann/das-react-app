@@ -1,9 +1,12 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 
 import "./course-card.styles.scss";
 
 function CourseCardComponent({ course }) {
   const { courseCode, courseName, courseSlot, courseIcon } = course;
+  const history = useHistory();
+
   return (
     <div className="course-card-container">
       <div className="course-card-header">
@@ -21,7 +24,13 @@ function CourseCardComponent({ course }) {
           <h3 className="course-slot">Slot: {courseSlot}</h3>
           <h3 className="course-name">{courseName}</h3>
           <div className="button-container">
-            <button type="button" className="course-button">
+            <button
+              type="button"
+              onClick={() => {
+                history.push(`/course-page/${courseCode}`);
+              }}
+              className="course-button"
+            >
               More Info
             </button>
             <button type="button" className="course-button">

@@ -1,11 +1,15 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 
 import NavItemComponent from "../nav-item/nav-item.component";
 import PopoverComponent from "../popover/popover.component";
 
+import { selectCurrentUser } from "../../redux/user/user.selectors";
+
 import "./menu-navbar.styles.scss";
 
-function MenuNavbarComponent({ user }) {
+function MenuNavbarComponent({ currentUser }) {
   const [popMenu, togglePopMenu] = useState(false);
 
   // Render
@@ -15,7 +19,10 @@ function MenuNavbarComponent({ user }) {
       <div className="menu-navbar-item-container">
         <NavItemComponent
           to="#"
-          iconSrc="./assets/icons/nav-option-icons/add_course_icon.svg"
+          iconSrc={
+            process.env.PUBLIC_URL +
+            "/assets/icons/nav-option-icons/add_course_icon.svg"
+          }
           $secondaryIconColor="#00ff7a"
           $iconAnimation="enlarge"
           $disableIconPopover
@@ -29,17 +36,24 @@ function MenuNavbarComponent({ user }) {
       >
         <NavItemComponent
           to="#"
-          iconSrc="./assets/icons/nav-option-icons/person_icon.svg"
+          iconSrc={
+            process.env.PUBLIC_URL +
+            "/assets/icons/nav-option-icons/person_icon.svg"
+          }
           $secondaryIconColor="#007aff"
           $iconAnimation="enlarge"
           $disableIconPopover
         >
           Menu
         </NavItemComponent>
-        {popMenu ? <PopoverComponent user={user} /> : ""}
+        {popMenu ? <PopoverComponent user={currentUser} /> : ""}
       </div>
     </div>
   );
 }
 
-export default MenuNavbarComponent;
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+});
+
+export default connect(mapStateToProps)(MenuNavbarComponent);

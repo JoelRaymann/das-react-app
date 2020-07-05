@@ -89,10 +89,6 @@ function LoginComponent({ userSignInStart, currentUser, sessionToken }) {
         <div className="button-container">
           <ButtonComponent
             type="submit"
-            primaryColor="#007aff"
-            primaryTextColor="#ffffff"
-            secondaryColor="#ffffff"
-            secondaryTextColor="#007aff"
             value="Submit Login"
             onClick={() =>
               toggleSpinners({
@@ -100,12 +96,15 @@ function LoginComponent({ userSignInStart, currentUser, sessionToken }) {
                 signInSpinner: !spinners.signInSpinner,
               })
             }
+            $primaryColor="#007aff"
+            $primaryTextColor="#ffffff"
+            $secondaryColor="#ffffff"
+            $secondaryTextColor="#007aff"
           >
             {spinners.signInSpinner ? <ButtonSpinnerComponent /> : "Sign In"}
           </ButtonComponent>
           <ButtonComponent
             type="button"
-            specialClassStyle="google-sign-in"
             onClick={() =>
               toggleSpinners({
                 ...spinners,
@@ -113,6 +112,7 @@ function LoginComponent({ userSignInStart, currentUser, sessionToken }) {
               })
             }
             value="Submit Login"
+            $specialClassStyle="google-sign-in"
           >
             {spinners.googleSpinner ? (
               <ButtonSpinnerComponent />

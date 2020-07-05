@@ -17,7 +17,7 @@ export class CourseClass {
    */
   constructor(courseName, courseCode, courseSlot) {
     this.courseName = courseName;
-    this.courseCode = courseCode;
+    this.courseCode = courseCode.toUpperCase();
     this.courseSlot = courseSlot;
     this.courseIcon = this._setCourseIcon();
     this.classTaken = 0;

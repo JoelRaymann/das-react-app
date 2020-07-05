@@ -6,7 +6,6 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import LoginPage from "./pages/login-page/login.page";
 import RegisterPage from "./pages/register-page/register.page";
 import CoursePage from "./pages/course-page/course.page";
-import LogoutPage from "./pages/logout-page/logout.pages";
 
 import {
   selectCurrentUser,
@@ -46,7 +45,6 @@ function App({ currentUser, sessionToken }) {
         />
 
         <Route
-          exact
           path="/course-page"
           render={() =>
             currentUser && sessionToken ? (
@@ -56,8 +54,6 @@ function App({ currentUser, sessionToken }) {
             )
           }
         />
-
-        <Route exact path="/logout" component={LogoutPage} />
 
         <Route
           path="/"
