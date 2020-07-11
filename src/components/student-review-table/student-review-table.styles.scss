@@ -1,6 +1,7 @@
 .student-review-table-container {
   height: 80vh;
   overflow: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
   margin: 0.5rem;
   padding: 0;

@@ -70,7 +70,7 @@ function LoginComponent({ userSignInStart, currentUser, sessionToken }) {
           handleChange={handleChange}
           type="text"
           name="username"
-          iconPath="./assets/icons/user_icon.svg"
+          iconPath={process.env.PUBLIC_URL + "/assets/icons/user_icon.svg"}
           value={userCredentials.username}
           required
         />
@@ -79,7 +79,7 @@ function LoginComponent({ userSignInStart, currentUser, sessionToken }) {
           handleChange={handleChange}
           type="password"
           name="password"
-          iconPath="./assets/icons/lock_icon.svg"
+          iconPath={process.env.PUBLIC_URL + "/assets/icons/lock_icon.svg"}
           value={userCredentials.password}
           required
         />

@@ -9,13 +9,13 @@ import { selectCurrentUser } from "../../redux/user/user.selectors";
 
 import "./menu-navbar.styles.scss";
 
-function MenuNavbarComponent({ currentUser }) {
+function MenuNavbarComponent({ currentUser, brand }) {
   const [popMenu, togglePopMenu] = useState(false);
 
   // Render
   return (
     <div className="menu-navbar-container">
-      <div className="menu-navbar-brand">DAS</div>
+      <div className="menu-navbar-brand">{brand ? brand : "DAS"}</div>
       <div className="menu-navbar-item-container">
         <NavItemComponent
           to="#"

@@ -1,4 +1,23 @@
 .course-info-container {
+  .course-info-header-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10px 0;
+
+    .course-info-header {
+      font-weight: 700;
+      padding: 10px 0;
+      margin: 0 7px;
+      border-radius: 8px;
+      font-size: 22px;
+      color: rgba(10, 10, 10, 0.8);
+      box-shadow: 0 0 1rem 0 rgba(70, 70, 70, 0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.1ch;
+    }
+  }
+
   .course-info-button-placement {
     width: 100%;
     display: flex;

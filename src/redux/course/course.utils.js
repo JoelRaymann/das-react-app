@@ -14,3 +14,14 @@ export function refineCourseList(courseListRaw) {
 
   return courseList;
 }
+
+/**
+ * Utility function to add a course to the course list.
+ *
+ * @param {Array<CourseClass>} courseList - A array of all the courses
+ * @param {CourseClass} course - The new course to add
+ */
+export function addCourseToCourseList(courseList, course) {
+  courseList.push(course);
+  return courseList;
+}

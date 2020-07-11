@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
@@ -6,6 +6,7 @@ import { createStructuredSelector } from "reselect";
 import LoaderComponent from "../loader/loader.component";
 import StudentReviewTableComponent from "../../components/student-review-table/student-review-table.component";
 import ButtonComponent from "../../components/button/button.component";
+import AttendanceFormModalComponent from "../attendance-form-modal/attendance-form-modal.component";
 
 import { getStudentListStart } from "../../redux/student/student.actions";
 
@@ -26,9 +27,10 @@ function CourseInfoComponent({
 }) {
   const history = useHistory();
 
+  const [attendanceModal, toggleAttendanceModal] = useState(false);
+
   // Component did mount
   useEffect(() => {
-    console.log(course);
     if (course.courseCode in studentLists) {
       console.log("[DEBUG]: Data already exist fired!");
     } else {
@@ -43,13 +45,20 @@ function CourseInfoComponent({
   if (course.courseCode in studentLists) {
     return (
       <div className="course-info-container">
+        <div className="course-info-header-container">
+          <div className="course-info-header">
+            {`${course.courseCode} - ${course.courseName}`}
+          </div>
+        </div>
         <StudentReviewTableComponent
           studentList={studentLists[course.courseCode]}
         />
         <div className="course-info-button-placement">
           <ButtonComponent
             type="button"
-            onClick={() => history.push("/course-page")}
+            onClick={() =>
+              history.push(`/course-page/${course.courseCode}/add-students`)
+            }
             $primaryColor="#007aff"
             $primaryTextColor="#ffffff"
             $secondaryColor="#ffffff"
@@ -59,25 +68,29 @@ function CourseInfoComponent({
           </ButtonComponent>
           <ButtonComponent
             type="button"
-            onClick={() => history.push("/course-page")}
-            $primaryColor="#00ff00"
+            onClick={() => toggleAttendanceModal(true)}
+            $primaryColor="rgba(39, 174, 96, 1.0)"
             $primaryTextColor="#ffffff"
             $secondaryColor="#ffffff"
-            $secondaryTextColor="#00ff00"
+            $secondaryTextColor="rgba(39, 174, 96, 1.0)"
           >
             Take Attendance
           </ButtonComponent>
           <ButtonComponent
             type="button"
             onClick={() => history.push("/course-page")}
-            $primaryColor="#ff0000"
+            $primaryColor="rgba(192, 57, 43, 1.0)"
             $primaryTextColor="#ffffff"
             $secondaryColor="#ffffff"
-            $secondaryTextColor="#ff0000"
+            $secondaryTextColor="rgba(192, 57, 43, 1.0)"
           >
             Go Back
           </ButtonComponent>
         </div>
+        <AttendanceFormModalComponent
+          show={attendanceModal}
+          onHide={() => toggleAttendanceModal(false)}
+        />
       </div>
     );
   } else {

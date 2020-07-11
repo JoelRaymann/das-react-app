@@ -18,6 +18,13 @@ export class StudentInfoClass {
     this.studentId = studentId;
     this.classesAttended = classesAttended;
     this.totalClasses = totalClasses;
+
+    this.attendancePercent =
+      this.totalClasses !== 0
+        ? Number.parseFloat(
+            (this.classesAttended / this.totalClasses) * 100
+          ).toFixed(2)
+        : 0;
   }
 }
 

@@ -41,6 +41,49 @@ export function getCourseListFailure(error) {
   };
 }
 
+/**
+ * Redux Action Function to start the course addition
+ * process.
+ *
+ * @param {CourseClass} newCourse - The new course to add.
+ * @param {TeacherUserClass} currentUser - The current user.
+ * @param {String} sessionToken - The current session token.
+ */
+export function addCourseStart(newCourse, currentUser, sessionToken) {
+  return {
+    type: CourseActionTypes.ADD_COURSE_START,
+    payload: {
+      newCourse: newCourse,
+      currentUser: currentUser,
+      sessionToken: sessionToken,
+    },
+  };
+}
+
+/**
+ * Redux Action Function to handle a successful course addition.
+ *
+ * @param {CourseClass} newCourse - The new course which was added.
+ */
+export function addCourseSuccess(newCourse) {
+  return {
+    type: CourseActionTypes.ADD_COURSE_SUCCESS,
+    payload: newCourse,
+  };
+}
+
+/**
+ * Redux Action Function to handle a failed course addition process.
+ *
+ * @param {String} error - The error message.
+ */
+export function addCourseFailure(error) {
+  return {
+    type: CourseActionTypes.ADD_COURSE_FAILURE,
+    payload: error,
+  };
+}
+
 export function clearCourseList() {
   return {
     type: CourseActionTypes.CLEAR_COURSE_LIST,

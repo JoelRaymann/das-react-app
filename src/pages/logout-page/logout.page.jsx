@@ -31,10 +31,10 @@ function LogoutPage({ currentUser, sessionToken }) {
           <div className="logout-button-container">
             <ButtonComponent
               type="button"
-              primaryColor="#ff0000"
-              primaryTextColor="#ffffff"
-              secondaryColor="#ffffff"
-              secondaryTextColor="#ff0000"
+              $primaryColor="#e74c3c"
+              $primaryTextColor="#ffffff"
+              $secondaryColor="#ffffff"
+              $secondaryTextColor="#e74c3c"
               value="Close Tab"
               onClick={() => window.close()}
             >
@@ -42,10 +42,10 @@ function LogoutPage({ currentUser, sessionToken }) {
             </ButtonComponent>
             <ButtonComponent
               type="button"
-              primaryColor="#007aff"
-              primaryTextColor="#ffffff"
-              secondaryColor="#ffffff"
-              secondaryTextColor="#007aff"
+              $primaryColor="#007aff"
+              $primaryTextColor="#ffffff"
+              $secondaryColor="#ffffff"
+              $secondaryTextColor="#007aff"
               value="Login Button"
               onClick={() => history.push("/login")}
             >

@@ -5,6 +5,7 @@ export const StyledTableRowComponent = styled.li`
   margin: 1rem 1rem;
   padding: 1.5rem 3rem;
   display: flex;
+  font-weight: 500;
   justify-content: space-between;
   color: ${(props) => props.$primaryTextColor || "#000000"};
   background-color: ${(props) => props.$primaryBgColor || "#ffffff"};
@@ -15,6 +16,7 @@ export const StyledTableRowComponent = styled.li`
           position: --webkit-sticky;
           position: sticky;
           top: 0;
+          font-weight: 700;
         `
       : ""}
 
@@ -22,9 +24,14 @@ export const StyledTableRowComponent = styled.li`
     text-transform: ${(props) => (props.$header ? "uppercase" : "none")};
     flex-basis: ${(props) => `${Math.round(90 / (props.$columns - 1 || 2))}%`};
 
-    &:nth-child(1) {
-      flex-basis: 10%;
-    }
+    ${(props) =>
+      props.$ignoreFirstColumnCompression
+        ? ""
+        : css`
+            &:nth-child(1) {
+              flex-basis: 10%;
+            }
+          `}
   }
 
   &:hover {

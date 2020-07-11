@@ -68,7 +68,7 @@ function RegisterComponent(props) {
           handleChange={handleChange}
           type="text"
           name="name"
-          iconPath="./assets/icons/name_icon.svg"
+          iconPath={process.env.PUBLIC_URL + "/assets/icons/name_icon.svg"}
           value={name}
           required
         />
@@ -77,7 +77,7 @@ function RegisterComponent(props) {
           handleChange={handleChange}
           type="text"
           name="username"
-          iconPath="./assets/icons/user_icon.svg"
+          iconPath={process.env.PUBLIC_URL + "/assets/icons/user_icon.svg"}
           value={username}
           required
         />
@@ -86,7 +86,7 @@ function RegisterComponent(props) {
           handleChange={handleChange}
           type="email"
           name="email"
-          iconPath="./assets/icons/mail_icon.svg"
+          iconPath={process.env.PUBLIC_URL + "/assets/icons/mail_icon.svg"}
           value={email}
           required
         />
@@ -95,7 +95,7 @@ function RegisterComponent(props) {
           handleChange={handleChange}
           type="password"
           name="password"
-          iconPath="./assets/icons/lock_icon.svg"
+          iconPath={process.env.PUBLIC_URL + "/assets/icons/lock_icon.svg"}
           value={password}
           required
         />
@@ -104,7 +104,7 @@ function RegisterComponent(props) {
           handleChange={handleChange}
           type="password"
           name="confirmPassword"
-          iconPath="./assets/icons/lock_icon.svg"
+          iconPath={process.env.PUBLIC_URL + "/assets/icons/lock_icon.svg"}
           value={confirmPassword}
           required
         />

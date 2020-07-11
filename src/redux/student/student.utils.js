@@ -1,4 +1,5 @@
 import StudentInfoClass from "../../classes/student-info.class";
+import StudentAttendanceClass from "../../classes/student-attendance.class";
 
 /**
  * Utility Function to refine the raw student list data recieved from the
@@ -19,4 +20,37 @@ export function refineStudentList(rawStudentList) {
   }
 
   return refinedStudentList;
+}
+
+/**
+ * Utility function to remove a course's fetched studentlist from the studentlists
+ * object
+ *
+ * @param {Object} studentLists - The object consisting of the list of students for
+ * each courseCode.
+ * @param {String} courseCode - The course code to remove the list of students.
+ */
+export function removeStudentList(studentLists, courseCode) {
+  delete studentLists[courseCode];
+  return studentLists;
+}
+
+/**
+ * Utility funtion to refine and refactor the raw student attendance data to suit
+ * the app need.
+ *
+ * @param {Array<Object>} rawStudentAttendanceList - The raw list of student attendance data.
+ */
+export function refineStudentAttendanceList(rawStudentAttendanceList) {
+  const refinedStudentAttendanceList = [];
+
+  for (let i = 0; i < refinedStudentAttendanceList.length; ++i) {
+    const { username, name, is_present } = rawStudentAttendanceList[i];
+
+    refineStudentAttendanceList.push(
+      new StudentAttendanceClass(username, name, is_present)
+    );
+  }
+
+  return refineStudentAttendanceList;
 }

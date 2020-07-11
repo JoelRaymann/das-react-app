@@ -1,9 +1,16 @@
 import CourseActionTypes from "./course.types";
 
+import { addCourseToCourseList } from "./course.utils";
+
 const INITIAL_STATE = {
+  // Course List Fetching
   courseList: [],
   fetchingCourseList: false,
-  error: null,
+  getCourseListError: null,
+
+  // Add Course
+  addCourseInProgress: false,
+  addCourseError: null,
 };
 
 function courseReducer(state = INITIAL_STATE, action) {
@@ -13,7 +20,7 @@ function courseReducer(state = INITIAL_STATE, action) {
       return {
         ...state,
         fetchingCourseList: true,
-        error: null,
+        getCourseListError: null,
       };
 
     // Handle a successful course retrieval process
@@ -22,7 +29,7 @@ function courseReducer(state = INITIAL_STATE, action) {
         ...state,
         courseList: action.payload,
         fetchingCourseList: false,
-        error: null,
+        getCourseListError: null,
       };
 
     // Handle a failed course retrieval process
@@ -31,7 +38,32 @@ function courseReducer(state = INITIAL_STATE, action) {
         ...state,
         courseList: [],
         fetchingCourseList: false,
-        error: action.payload,
+        getCourseListError: action.payload,
+      };
+
+    // Handle a starting stages of course addition
+    case CourseActionTypes.ADD_COURSE_START:
+      return {
+        ...state,
+        addCourseInProgress: true,
+        addCourseError: null,
+      };
+
+    // Handling a successful course addition
+    case CourseActionTypes.ADD_COURSE_SUCCESS:
+      return {
+        ...state,
+        courseList: addCourseToCourseList(state.courseList, action.payload),
+        addCourseInProgress: false,
+        addCourseError: null,
+      };
+
+    // Handling a failed course addition
+    case CourseActionTypes.ADD_COURSE_FAILURE:
+      return {
+        ...state,
+        addCourseInProgress: false,
+        addCourseError: action.payload,
       };
 
     // Clearing Course List
@@ -40,7 +72,9 @@ function courseReducer(state = INITIAL_STATE, action) {
         ...state,
         courseList: [],
         fetchingCourseList: false,
-        error: null,
+        getCourseListError: null,
+        addCourseInProgress: false,
+        addCourseError: null,
       };
 
     default:

@@ -5,8 +5,8 @@ const StyledButtonSpinnerComponent = styled.span`
   border: 4px solid;
   border-top: 4px solid transparent;
   border-radius: 50%;
-  width: 10px;
-  height: 10px;
+  width: 20px;
+  height: 20px;
   animation: spin 0.75s linear infinite;
 
   @keyframes spin {

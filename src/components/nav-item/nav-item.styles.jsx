@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 import { hexToFilter } from "../../utils/icon-color-converter";
 
 export const NavItemLink = styled(Link)`
+  text-decoration: none !important;
   display: flex;
   align-items: center;
   width: 100%;
   height: 4rem;
   background-color: ${(props) => props.$primaryBgColor || "#23232e"};
-  text-decoration: none;
   transition: 200ms ease all;
 
   img {

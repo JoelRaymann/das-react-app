@@ -46,12 +46,81 @@ export function getStudentListSuccess(courseCode, studentList) {
 export function getStudentListFailure(error) {
   return {
     type: StudentActionTypes.GET_STUDENT_LIST_FAILURE,
-    action: error,
+    payload: error,
   };
 }
 
-export function CleanUpStudentStore() {
+/**
+ * Redux Action Function to fetch studentlists for a course for the given date.
+ *
+ * @param {CourseClass} course - The current course to fetch the student list for.
+ * @param {String} username - The current user's username.
+ * @param {String} date - The student list to fetch for a given date for a course.
+ * @param {String} sessionToken - The current session token.
+ */
+export function getStudentAttendanceListStart(
+  course,
+  username,
+  date,
+  sessionToken
+) {
+  return {
+    type: StudentActionTypes.GET_STUDENT_LIST_DATEWISE_START,
+    payload: {
+      course: course,
+      username: username,
+      date: date,
+      sessionToken: sessionToken,
+    },
+  };
+}
+
+/**
+ * Redux Action Function to handle a successful student attendance data
+ * fetch for the given date.
+ *
+ * @param {Array<StudentAttendanceClass>} studentAttendanceList - A array of studentAttendanceClass
+ * list
+ */
+export function getStudentAttendanceListSuccess(studentAttendanceList) {
+  return {
+    type: StudentActionTypes.GET_STUDENT_LIST_DATEWISE_SUCCESS,
+    payload: studentAttendanceList,
+  };
+}
+
+/**
+ * Redux Action Function to handle a failed student attendance data fetch
+ * for the given date.
+ *
+ * @param {string} error - The error message.
+ */
+export function getStudentAttendanceListFailure(error) {
+  return {
+    type: StudentActionTypes.GET_STUDENT_LIST_DATEWISE_FAILURE,
+    payload: error,
+  };
+}
+
+/**
+ * Redux Action Function to clean up student redux
+ */
+export function cleanUpStudentStore() {
   return {
     type: StudentActionTypes.CLEANUP_STUDENT_STORE,
+  };
+}
+
+/**
+ * Redux Action Function to delete the list of students associated with
+ * the given course code. NOTE: This is used to refresh the frontend
+ * student lists DB.
+ *
+ * @param {String} courseCode - The student list to delete from the courseCode
+ */
+export function removeStudentList(courseCode) {
+  return {
+    type: StudentActionTypes.REMOVE_STUDENT_LIST,
+    payload: courseCode,
   };
 }

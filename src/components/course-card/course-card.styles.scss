@@ -53,6 +53,7 @@
       .course-slot,
       .course-name {
         margin: 5px;
+        font-size: 20px;
         text-align: left;
         padding: 0;
         text-overflow: ellipsis;
@@ -66,7 +67,8 @@
 
         .course-button {
           outline: none;
-          font-weight: 900;
+          font-weight: 500;
+          font-size: 14px;
           width: auto;
           padding: 7.5px 7.5px !important;
           border: 1px solid #007aff;

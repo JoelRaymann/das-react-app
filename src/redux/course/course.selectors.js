@@ -16,3 +16,8 @@ export const selectFetchingCourseList = createSelector(
   [selectCourse],
   (course) => course.fetchingCourseList
 );
+
+export const selectAddCourseInProgress = createSelector(
+  [selectCourse],
+  (course) => course.addCourseInProgress
+);

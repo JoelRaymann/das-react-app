@@ -10,27 +10,31 @@ import {
   selectSessionToken,
 } from "../../redux/user/user.selectors";
 
-import "./popover.styles.scss";
+import {
+  StyledPopoverContainer,
+  StyledPopoverHeader,
+  StyledPopoverList,
+  StyledPopoverListItem,
+} from "./popover.styles";
 
 function PopoverComponent({ currentUser, sessionToken, userSignOutStart }) {
   // Render
   return (
-    <div className="popover-container">
-      <ul className="popover-list">
-        <li className="popover-header-container">
-          <div className="popover-header">
+    <StyledPopoverContainer>
+      <StyledPopoverList>
+        <StyledPopoverHeader>
+          <div>
             <img
               src={
                 process.env.PUBLIC_URL +
                 "/assets/icons/nav-option-icons/user_icon.svg"
               }
               alt="user-profile"
-              className="user-profile"
             />
-            <span className="header-text">Welcome, {currentUser.name}</span>
+            <span>Welcome, {currentUser.name}</span>
           </div>
-        </li>
-        <li className="popover-item">
+        </StyledPopoverHeader>
+        <StyledPopoverListItem>
           <NavItemComponent
             to="#"
             iconSrc={
@@ -42,8 +46,8 @@ function PopoverComponent({ currentUser, sessionToken, userSignOutStart }) {
           >
             Add Course
           </NavItemComponent>
-        </li>
-        <li className="popover-item">
+        </StyledPopoverListItem>
+        <StyledPopoverListItem>
           <NavItemComponent
             to="#"
             iconSrc={
@@ -54,8 +58,8 @@ function PopoverComponent({ currentUser, sessionToken, userSignOutStart }) {
           >
             View Profile
           </NavItemComponent>
-        </li>
-        <li className="popover-item">
+        </StyledPopoverListItem>
+        <StyledPopoverListItem>
           <NavItemComponent
             to="#"
             iconSrc={
@@ -68,11 +72,8 @@ function PopoverComponent({ currentUser, sessionToken, userSignOutStart }) {
           >
             Settings
           </NavItemComponent>
-        </li>
-        <li
-          className="popover-item"
-          onClick={() => userSignOutStart(sessionToken)}
-        >
+        </StyledPopoverListItem>
+        <StyledPopoverListItem onClick={() => userSignOutStart(sessionToken)}>
           <NavItemComponent
             to="/logout"
             iconSrc={
@@ -85,9 +86,9 @@ function PopoverComponent({ currentUser, sessionToken, userSignOutStart }) {
           >
             Logout
           </NavItemComponent>
-        </li>
-      </ul>
-    </div>
+        </StyledPopoverListItem>
+      </StyledPopoverList>
+    </StyledPopoverContainer>
   );
 }
 

@@ -9,7 +9,7 @@
   .logout-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     background-color: whitesmoke;
     align-items: center;
     box-sizing: border-box;
@@ -21,6 +21,7 @@
 
     .logout-message {
       font-family: "Poppins", sans-serif;
+      font-size: 24px;
     }
 
     .logout-button-container {

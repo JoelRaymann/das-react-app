@@ -5,9 +5,14 @@ import StudentActionTypes from "./student.types";
 import {
   getStudentListSuccess,
   getStudentListFailure,
+  getStudentAttendanceListSuccess,
+  getStudentAttendanceListFailure,
 } from "./student.actions";
 
-import { refineStudentList } from "./student.utils";
+import {
+  refineStudentList,
+  refineStudentAttendanceList,
+} from "./student.utils";
 
 function* studentListFetching(action) {
   try {
@@ -32,6 +37,39 @@ function* studentListFetching(action) {
   }
 }
 
+function* studentAttendanceListFetching(action) {
+  try {
+    const {
+      payload: { course, username, date, sessionToken },
+    } = action;
+    const { courseCode, courseSlot } = course;
+
+    const studentAttendanceListResponse = yield axios.get(
+      `https://das.pythonanywhere.com/api/attendance/list/${courseCode}/${courseSlot}/${username}/${date}/`,
+      {
+        headers: {
+          Authorization: `Token ${sessionToken}`,
+        },
+      }
+    );
+
+    const studentAttendanceList = yield refineStudentAttendanceList(
+      studentAttendanceListResponse.data
+    );
+    yield put(getStudentAttendanceListSuccess(studentAttendanceList));
+  } catch (error) {
+    alert(`[ERROR]: Facing a student attendance list fetching error: ${error}`);
+    yield put(getStudentAttendanceListFailure(error));
+  }
+}
+
+export function* onStudentAttendanceListFetch() {
+  yield takeLatest(
+    StudentActionTypes.GET_STUDENT_ATTENDANCE_LIST_START,
+    studentAttendanceListFetching
+  );
+}
+
 export function* onStudentListFetch() {
   yield takeLatest(
     StudentActionTypes.GET_STUDENT_LIST_START,
@@ -40,5 +78,5 @@ export function* onStudentListFetch() {
 }
 
 export function* studentSaga() {
-  yield all([call(onStudentListFetch)]);
+  yield all([call(onStudentListFetch), call(onStudentAttendanceListFetch)]);
 }
