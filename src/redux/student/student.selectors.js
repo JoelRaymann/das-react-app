@@ -2,9 +2,14 @@ import { createSelector } from "reselect";
 
 const selectStudent = (state) => state.student;
 
-export const selectStudentLists = createSelector(
+export const selectStudentList = createSelector(
   [selectStudent],
-  (student) => student.studentLists
+  (student) => student.studentList
+);
+
+export const selectIsFetchingStudentList = createSelector(
+  [selectStudent],
+  (student) => student.isFetchingStudentList
 );
 
 export const selectStudentAttendanceList = createSelector(

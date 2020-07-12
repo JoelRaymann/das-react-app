@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import QRDisplayComponent from "../qr-display/qr-display.component";
 import ButtonComponent from "../button/button.component";
 
-import { removeStudentList } from "../../redux/student/student.actions";
+import { cleanStudentList } from "../../redux/student/student.actions";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 
 import "./add-student.styles.scss";
@@ -17,7 +17,7 @@ import "./add-student.styles.scss";
  *
  * @param {CourseClass} course - The course to add students to.
  */
-function AddStudentComponent({ course, currentUser, removeStudentList }) {
+function AddStudentComponent({ course, currentUser, cleanStudentList }) {
   const history = useHistory();
 
   const qrPayload = JSON.stringify({
@@ -40,7 +40,7 @@ function AddStudentComponent({ course, currentUser, removeStudentList }) {
       <div className="add-student-button-placement">
         <ButtonComponent
           onClick={() => {
-            removeStudentList(course.courseCode);
+            cleanStudentList();
             history.push(`/course-page/${course.courseCode}`);
           }}
           type="button"
@@ -57,7 +57,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  removeStudentList: (courseCode) => dispatch(removeStudentList(courseCode)),
+  cleanStudentList: () => dispatch(cleanStudentList()),
 });
 
 export default connect(

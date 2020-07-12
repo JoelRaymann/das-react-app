@@ -2,7 +2,8 @@ import StudentActionTypes from "./student.types";
 import { removeStudentList } from "./student.utils";
 
 const INITIAL_STATE = {
-  studentLists: {},
+  isFetchingStudentList: false,
+  studentList: [],
   error: null,
 
   // Student Attendance data fetch
@@ -14,20 +15,28 @@ const INITIAL_STATE = {
 function studentReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     // Handle student list fetch
+    case StudentActionTypes.GET_STUDENT_LIST_START:
+      return {
+        ...state,
+        isFetchingStudentList: true,
+        studentList: [],
+        error: null,
+      };
+
     // Successful Student List Fetch
     case StudentActionTypes.GET_STUDENT_LIST_SUCCESS:
       return {
         ...state,
-        studentLists: {
-          ...state.studentLists,
-          [action.payload.courseCode]: action.payload.studentList,
-        },
+        isFetchingStudentList: false,
+        studentList: action.payload,
       };
 
     // Failed Student List Fetch
     case StudentActionTypes.GET_STUDENT_LIST_FAILURE:
       return {
         ...state,
+        studentList: [],
+        isFetchingStudentList: false,
         error: action.payload,
       };
 
@@ -61,7 +70,7 @@ function studentReducer(state = INITIAL_STATE, action) {
     case StudentActionTypes.REMOVE_STUDENT_LIST:
       return {
         ...state,
-        studentLists: removeStudentList(state.studentLists, action.payload),
+        studentList: [],
       };
 
     // Cleanup

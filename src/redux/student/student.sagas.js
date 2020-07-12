@@ -38,7 +38,7 @@ function* studentListFetching(action) {
     const studentList = yield refineStudentList(
       studentListResponse.data["attendance-class-info"]
     );
-    yield put(getStudentListSuccess(courseCode, studentList));
+    yield put(getStudentListSuccess(studentList));
   } catch (error) {
     alert(`[ERROR]: Facing a student fetching error: ${error}`);
     yield put(getStudentListFailure(error));

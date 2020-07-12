@@ -9,8 +9,9 @@ import ButtonComponent from "../../components/button/button.component";
 import DeleteCourseModalComponent from "../delete-course-modal/delele-course-modal.component";
 
 import { getStudentListStart } from "../../redux/student/student.actions";
+import { selectIsFetchingStudentList } from "../../redux/student/student.selectors";
 
-import { selectStudentLists } from "../../redux/student/student.selectors";
+import { selectStudentList } from "../../redux/student/student.selectors";
 import {
   selectCurrentUser,
   selectSessionToken,
@@ -22,7 +23,8 @@ function CourseInfoComponent({
   course,
   currentUser,
   sessionToken,
-  studentLists,
+  studentList,
+  isFetchingStudentList,
   getStudentListStart,
 }) {
   const history = useHistory();
@@ -31,18 +33,13 @@ function CourseInfoComponent({
 
   // Component did mount
   useEffect(() => {
-    if (course.courseCode in studentLists) {
-      console.log("[DEBUG]: Data already exist fired!");
-    } else {
-      console.log(
-        `[DEBUG]: Student List Data Fetching Fired! ${course.courseCode}`
-      );
-      getStudentListStart(course, currentUser.username, sessionToken);
-    }
-  }, [course, getStudentListStart, currentUser, sessionToken, studentLists]);
+    getStudentListStart(course, currentUser.username, sessionToken);
+  }, []);
 
   // Render
-  if (course.courseCode in studentLists) {
+  if (isFetchingStudentList) {
+    return <LoaderComponent />;
+  } else {
     return (
       <div className="course-info-container">
         <div className="course-info-header-container">
@@ -63,9 +60,7 @@ function CourseInfoComponent({
             />
           </div>
         </div>
-        <StudentReviewTableComponent
-          studentList={studentLists[course.courseCode]}
-        />
+        <StudentReviewTableComponent studentList={studentList} />
         <div className="course-info-button-placement">
           <ButtonComponent
             type="button"
@@ -111,8 +106,6 @@ function CourseInfoComponent({
         ;
       </div>
     );
-  } else {
-    return <LoaderComponent />;
   }
   // return <div>{course}</div>;
 }
@@ -120,7 +113,8 @@ function CourseInfoComponent({
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
   sessionToken: selectSessionToken,
-  studentLists: selectStudentLists,
+  studentList: selectStudentList,
+  isFetchingStudentList: selectIsFetchingStudentList,
 });
 
 const mapDispatchtoProps = (dispatch) => ({

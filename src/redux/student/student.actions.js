@@ -23,17 +23,12 @@ export function getStudentListStart(course, username, token) {
  * Redux Action Function to handle a successful student list fetch for the
  * given course.
  *
- * @param {String} courseCode - The course code to associate the student list
- * with.
  * @param {Array<StudentInfoClass>} studentList - A array of fetched student list.
  */
-export function getStudentListSuccess(courseCode, studentList) {
+export function getStudentListSuccess(studentList) {
   return {
     type: StudentActionTypes.GET_STUDENT_LIST_SUCCESS,
-    payload: {
-      courseCode: courseCode,
-      studentList: studentList,
-    },
+    payload: studentList,
   };
 }
 
@@ -115,12 +110,9 @@ export function cleanUpStudentStore() {
  * Redux Action Function to delete the list of students associated with
  * the given course code. NOTE: This is used to refresh the frontend
  * student lists DB.
- *
- * @param {String} courseCode - The student list to delete from the courseCode
  */
-export function removeStudentList(courseCode) {
+export function cleanStudentList() {
   return {
-    type: StudentActionTypes.REMOVE_STUDENT_LIST,
-    payload: courseCode,
+    type: StudentActionTypes.CLEAN_STUDENT_LIST,
   };
 }
