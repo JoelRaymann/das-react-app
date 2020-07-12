@@ -5,8 +5,11 @@ import CourseActionTypes from "./course.types";
 import {
   getCourseListSuccess,
   getCourseListFailure,
-  addCourseFailure,
   addCourseSuccess,
+  addCourseFailure,
+  deleteCourseSuccess,
+  deleteCourseFailure,
+  removeCourseFromCourseList,
 } from "./course.actions";
 import { refineCourseList } from "./course.utils";
 
@@ -20,7 +23,7 @@ function* fetchCourseList(action) {
 
     // Send a course list response
     const courseListResponse = yield axios.get(
-      `https://das.pythonanywhere.com/api/teachers/${username}/courses`,
+      `http://13.233.160.133:8080/api/teachers/${username}/courses`,
       {
         headers: {
           Authorization: `Token ${token}`,
@@ -58,7 +61,7 @@ function* addCourse(action) {
     };
 
     const addCourseResponse = yield axios.post(
-      `https://das.pythonanywhere.com/api/courses`,
+      `http://13.233.160.133:8080/api/courses`,
       payloadCourse,
       {
         headers: {
@@ -71,6 +74,36 @@ function* addCourse(action) {
   } catch (error) {
     alert(`[ERROR]: Course Addition Error ${error}`);
     yield put(addCourseFailure(error));
+  }
+}
+
+function* deleteCourse(action) {
+  try {
+    const {
+      payload: { course, username, sessionToken },
+    } = action;
+    const { courseCode, courseSlot } = course;
+
+    const courseDeletionResponse = yield axios.post(
+      `http://13.233.160.133:8080/api/delete_course`,
+      {
+        courseID: courseCode,
+        slot: courseSlot,
+        faculty_id: username,
+        username: username,
+      },
+      {
+        headers: {
+          Authorization: `Token ${sessionToken}`,
+        },
+      }
+    );
+    console.log(courseDeletionResponse);
+    yield put(removeCourseFromCourseList(course));
+    yield put(deleteCourseSuccess());
+  } catch (error) {
+    alert(`[ERROR]: Course Deletion Error: ${error}`);
+    yield put(deleteCourseFailure(error));
   }
 }
 
@@ -89,6 +122,13 @@ export function* onAddCourse() {
   yield takeLatest(CourseActionTypes.ADD_COURSE_START, addCourse);
 }
 
+/**
+ * Course Saga Listening Function to process the deletion of course
+ */
+export function* onDeleteCourse() {
+  yield takeLatest(CourseActionTypes.DELETE_COURSE_START, deleteCourse);
+}
+
 export function* courseSaga() {
-  yield all([call(onCourseListFetch), call(onAddCourse)]);
+  yield all([call(onCourseListFetch), call(onAddCourse), call(onDeleteCourse)]);
 }

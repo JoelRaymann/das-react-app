@@ -36,7 +36,7 @@ function PopoverComponent({ currentUser, sessionToken, userSignOutStart }) {
         </StyledPopoverHeader>
         <StyledPopoverListItem>
           <NavItemComponent
-            to="#"
+            to="/course-page/add-course"
             iconSrc={
               process.env.PUBLIC_URL +
               "/assets/icons/nav-option-icons/add_course_icon.svg"

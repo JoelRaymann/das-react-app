@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
 
 import NavItemComponent from "../nav-item/nav-item.component";
@@ -12,11 +13,21 @@ import "./menu-navbar.styles.scss";
 function MenuNavbarComponent({ currentUser, brand }) {
   const [popMenu, togglePopMenu] = useState(false);
 
+  const history = useHistory();
+
   // Render
   return (
     <div className="menu-navbar-container">
-      <div className="menu-navbar-brand">{brand ? brand : "DAS"}</div>
-      <div className="menu-navbar-item-container">
+      <div
+        className="menu-navbar-brand"
+        onClick={() => history.push("/course-page")}
+      >
+        {brand ? brand : "DAS"}
+      </div>
+      <div
+        className="menu-navbar-item-container"
+        onClick={() => history.push("/course-page/add-course")}
+      >
         <NavItemComponent
           to="#"
           iconSrc={

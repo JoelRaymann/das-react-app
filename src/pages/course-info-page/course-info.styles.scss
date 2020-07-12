@@ -1,4 +1,13 @@
 .course-info-page-container {
   width: 100vw;
-  height: auto;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  .course-info-page-content {
+    width: 100vw;
+    height: 70vh;
+    margin-bottom: auto;
+  }
 }

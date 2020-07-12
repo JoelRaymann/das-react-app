@@ -1,0 +1,32 @@
+.add-course-form-container {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #bbbbbb;
+  border-radius: 8px;
+  padding: 40px;
+  box-shadow: 0 0.5rem 1rem 0.5rem rgba(70, 70, 70, 0.8);
+
+  .add-course-title {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 0.05ch;
+  }
+
+  .add-course-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .add-course-button-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+  }
+}

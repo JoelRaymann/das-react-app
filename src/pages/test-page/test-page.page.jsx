@@ -1,16 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 
-import AttendanceReviewTableComponent from "../../components/attendance-review/attendance-review.component";
+import DeleteCourseModalComponent from "../../components/delete-course-modal/delele-course-modal.component";
 
-import { TestAttendanceList } from "../../data/students-attendance.data";
+import { CourseClass } from "../../classes/course.class";
 
 import "./test-page.styles.scss";
 
 function TestPage() {
+  const testCourse = new CourseClass("Python For Programming", "CSE1001", "F1");
+  const [deleteModal, toggleDeleteModal] = useState(true);
+
   return (
     <div className="test-page-container">
-      <AttendanceReviewTableComponent
-        studentAttendanceList={TestAttendanceList}
+      <button onClick={() => toggleDeleteModal(true)}>Delete Course</button>
+
+      <DeleteCourseModalComponent
+        show={deleteModal}
+        onHide={() => toggleDeleteModal(false)}
+        course={testCourse}
       />
     </div>
   );

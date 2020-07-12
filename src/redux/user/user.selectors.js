@@ -11,3 +11,8 @@ export const selectSessionToken = createSelector(
   [selectUser],
   (user) => user.token
 );
+
+export const selectIsLogin = createSelector(
+  [selectUser],
+  (user) => user.isLogin
+);

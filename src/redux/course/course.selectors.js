@@ -21,3 +21,8 @@ export const selectAddCourseInProgress = createSelector(
   [selectCourse],
   (course) => course.addCourseInProgress
 );
+
+export const selectIsDeletingCourse = createSelector(
+  [selectCourse],
+  (course) => course.isDeletingCourse
+);

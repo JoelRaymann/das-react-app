@@ -84,8 +84,60 @@ export function addCourseFailure(error) {
   };
 }
 
-export function clearCourseList() {
+/**
+ * Redux Action function to start the course deletion process.
+ *
+ * @param {CourseClass} course - The course to delete.
+ * @param {String} username - The username of the current user.
+ * @param {String} sessionToken - The session JWT token.
+ */
+export function deleteCourseStart(course, username, sessionToken) {
   return {
-    type: CourseActionTypes.CLEAR_COURSE_LIST,
+    type: CourseActionTypes.DELETE_COURSE_START,
+    payload: {
+      course: course,
+      username: username,
+      sessionToken: sessionToken,
+    },
+  };
+}
+
+/**
+ * Redux Action function to handle a successful course deletion.
+ */
+export function deleteCourseSuccess() {
+  return {
+    type: CourseActionTypes.DELETE_COURSE_SUCCESS,
+  };
+}
+
+/**
+ * Redux Action function to handle a failed course deletion.
+ */
+export function deleteCourseFailure(error) {
+  return {
+    type: CourseActionTypes.DELETE_COURSE_FAILURE,
+    payload: error,
+  };
+}
+
+/**
+ * Redux Action function to remove a course from course list.
+ *
+ * @param {CourseClass} course - The course to remove from courselist.
+ */
+export function removeCourseFromCourseList(course) {
+  return {
+    type: CourseActionTypes.REMOVE_COURSE_FROM_COURSELIST,
+    payload: course,
+  };
+}
+
+/**
+ * Redux Action function to reset the course reducer
+ */
+export function resetCourseReducer() {
+  return {
+    type: CourseActionTypes.RESET_COURSE_REDUCER,
   };
 }

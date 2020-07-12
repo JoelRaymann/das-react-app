@@ -1,19 +1,35 @@
 import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 
 import ButtonComponent from "../button/button.component";
 import FormInputComponent from "../form-input/form-input.component";
+
+import { getAttendanceCipherTextStart } from "../../redux/attendance/attendance.actions";
+import {
+  selectCurrentUser,
+  selectSessionToken,
+} from "../../redux/user/user.selectors";
 
 import {
   StyledModalBody,
   StyledModalFooter,
 } from "./attendance-form-modal.styles";
 
-function AttendanceFormModalComponent(props) {
+function AttendanceFormModalComponent({
+  show,
+  onHide,
+  course,
+  qrRotationDuration,
+  username,
+  sessionToken,
+  getAttendanceCipherTextStart,
+}) {
   // Set state
   const [sessionDuration, setSessionDuration] = useState("");
-
-  const { onHide } = props;
+  const history = useHistory();
 
   /**
    * Function to handle the changes happening in the form input.
@@ -33,11 +49,25 @@ function AttendanceFormModalComponent(props) {
    */
   function handleSubmit(event) {
     event.preventDefault();
+
+    getAttendanceCipherTextStart(
+      course,
+      username,
+      sessionDuration,
+      sessionToken,
+      qrRotationDuration
+    );
+
+    history.push(
+      `/course-page/${course.courseCode}/attendance-page/attendance-qr`
+    );
+
+    onHide();
   }
 
   return (
     <div className="attendance-form-modal-container">
-      <Modal {...props} backdrop="static" size="lg" centered>
+      <Modal show={show} onHide={onHide} backdrop="static" size="lg" centered>
         <Modal.Header closeButton>
           <Modal.Title>
             Attention! Please Read the instructions carefully
@@ -45,10 +75,14 @@ function AttendanceFormModalComponent(props) {
         </Modal.Header>
         <StyledModalBody>
           <p className="attendance-instructions">
-            Please read the following instructions carefully. This is a one time
-            end-to-end process to process the attendance for the current class.
-            Once started, there is no turning back. You can cancel the
-            attendance process right now by pressing the{" "}
+            Please read the following instructions carefully. You are proceeding
+            to take attendance for the course{" "}
+            <b>
+              {course.courseCode} - {course.courseName}
+            </b>
+            . This is a one time end-to-end process to process the attendance
+            for the current class. Once started, there is no turning back. You
+            can cancel the attendance process right now by pressing the{" "}
             <span className="go-back-instruction">Close</span> button. NOTE: The
             user has to follow the given instructions at all times to maintain
             the integrity of the attendance process.
@@ -98,7 +132,6 @@ function AttendanceFormModalComponent(props) {
               required
             />
             <ButtonComponent
-              onClick={onHide}
               type="submit"
               value="Submit Session Details"
               $primaryColor="#2ecc71"
@@ -112,7 +145,10 @@ function AttendanceFormModalComponent(props) {
         </StyledModalBody>
         <StyledModalFooter>
           <ButtonComponent
-            onClick={onHide}
+            onClick={() => {
+              history.push(`/course-page`);
+              onHide();
+            }}
             type="button"
             $primaryColor="#e74c3c"
             $primaryTextColor="#ffffff"
@@ -127,4 +163,31 @@ function AttendanceFormModalComponent(props) {
   );
 }
 
-export default AttendanceFormModalComponent;
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+  sessionToken: selectSessionToken,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getAttendanceCipherTextStart: (
+    course,
+    username,
+    sessionDuration,
+    sessionToken,
+    qrRotationDuration
+  ) =>
+    dispatch(
+      getAttendanceCipherTextStart(
+        course,
+        username,
+        sessionDuration,
+        sessionToken,
+        qrRotationDuration
+      )
+    ),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AttendanceFormModalComponent);

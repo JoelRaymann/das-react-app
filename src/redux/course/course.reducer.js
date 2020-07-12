@@ -1,6 +1,9 @@
 import CourseActionTypes from "./course.types";
 
-import { addCourseToCourseList } from "./course.utils";
+import {
+  addCourseToCourseList,
+  deleteCourseFromCourseList,
+} from "./course.utils";
 
 const INITIAL_STATE = {
   // Course List Fetching
@@ -11,6 +14,10 @@ const INITIAL_STATE = {
   // Add Course
   addCourseInProgress: false,
   addCourseError: null,
+
+  // Delete Course
+  isDeletingCourse: false,
+  deleteCourseError: null,
 };
 
 function courseReducer(state = INITIAL_STATE, action) {
@@ -66,15 +73,56 @@ function courseReducer(state = INITIAL_STATE, action) {
         addCourseError: action.payload,
       };
 
-    // Clearing Course List
-    case CourseActionTypes.CLEAR_COURSE_LIST:
+    // Handling a course deletion starting process.
+    case CourseActionTypes.DELETE_COURSE_START:
       return {
         ...state,
+        isDeletingCourse: true,
+        deleteCourseError: null,
+      };
+
+    // Handling a successful course deletion
+    case CourseActionTypes.DELETE_COURSE_SUCCESS:
+      return {
+        ...state,
+        isDeletingCourse: false,
+        deleteCourseError: null,
+      };
+
+    // Handling a failed course deletion
+    case CourseActionTypes.DELETE_COURSE_FAILURE:
+      return {
+        ...state,
+        isDeletingCourse: false,
+        deleteCourseError: action.payload,
+      };
+
+    // Remove Course from Course list
+    case CourseActionTypes.REMOVE_COURSE_FROM_COURSELIST:
+      return {
+        ...state,
+        courseList: deleteCourseFromCourseList(
+          state.courseList,
+          action.payload
+        ),
+      };
+
+    // Clearing Course List
+    case CourseActionTypes.RESET_COURSE_REDUCER:
+      return {
+        ...state,
+        // Course List Fetching
         courseList: [],
         fetchingCourseList: false,
         getCourseListError: null,
+
+        // Add Course
         addCourseInProgress: false,
         addCourseError: null,
+
+        // Delete Course
+        isDeletingCourse: false,
+        deleteCourseError: null,
       };
 
     default:

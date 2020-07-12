@@ -17,7 +17,7 @@ function* fetchAttendanceCipherText(action) {
     const { courseCode, courseSlot } = course;
 
     const cipherResponse = yield axios.post(
-      "https://das.pythonanywhere.com/api/roomcreate",
+      "http://13.233.160.133:8080/api/createqr",
       {
         courseID: courseCode,
         slot: courseSlot,

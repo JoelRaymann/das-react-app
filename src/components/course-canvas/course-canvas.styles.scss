@@ -1,14 +1,27 @@
 .course-canvas-container {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-wrap: wrap;
-  width: 100vw;
-  background-color: whitesmoke;
+  // display: flex;
+  // justify-content: flex-start;
+  // align-items: center;
+  // flex-wrap: wrap;
+  // width: 100vw;
+  // background-color: whitesmoke;
 
   .loader-canvas-container {
     width: 100vw;
     height: 100vh;
     background-color: whitesmoke;
+  }
+
+  .course-canvas-page-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    .course-card-list-container {
+      display: flex;
+      flex-wrap: wrap;
+    }
   }
 }

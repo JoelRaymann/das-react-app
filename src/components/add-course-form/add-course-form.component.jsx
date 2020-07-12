@@ -23,6 +23,7 @@ function AddCourseFormComponent({
   currentUser,
   sessionToken,
   addCourseInProgress,
+  addCourseStart,
 }) {
   const history = useHistory();
 
@@ -57,7 +58,7 @@ function AddCourseFormComponent({
     event.preventDefault();
 
     if (addCourseInProgress) {
-      console.log("[INFO]: Adding Course already in progress. Please Wait.");
+      alert("[INFO]: Adding Course already in progress. Please Wait.");
       return;
     }
 
@@ -114,15 +115,14 @@ function AddCourseFormComponent({
             {addCourseInProgress ? <ButtonSpinnerComponent /> : "Add Course"}
           </ButtonComponent>
           <ButtonComponent
-            type="submit"
-            value="Submit Login"
+            type="button"
             onClick={() => history.push("/course-page")}
             $primaryColor="#007aff"
             $primaryTextColor="#ffffff"
             $secondaryColor="#ffffff"
             $secondaryTextColor="#007aff"
           >
-            "Go Back"
+            Go Back
           </ButtonComponent>
         </div>
       </form>

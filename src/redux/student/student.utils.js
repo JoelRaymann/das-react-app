@@ -12,10 +12,10 @@ export function refineStudentList(rawStudentList) {
   const refinedStudentList = [];
 
   for (let i = 0; i < rawStudentList.length; ++i) {
-    const { student_name, student_id, present, total } = rawStudentList[i];
+    const { student_name, reg_no, present, total } = rawStudentList[i];
 
     refinedStudentList.push(
-      new StudentInfoClass(student_name, student_id, present, total)
+      new StudentInfoClass(student_name, reg_no, present, total)
     );
   }
 

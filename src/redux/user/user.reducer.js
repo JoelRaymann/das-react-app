@@ -1,9 +1,15 @@
 import UserActionTypes from "./user.types";
 
 const INITIAL_STATE = {
+  // Handling Login
+  isLogin: false,
   currentUser: null,
   token: null,
-  error: null,
+  loginError: null,
+
+  // Handling Register
+  isRegistering: false,
+  registerError: null,
 };
 
 /**
@@ -24,12 +30,33 @@ const INITIAL_STATE = {
 function userReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     // Handle a successful user authentication
+    case UserActionTypes.SIGN_IN_START:
+      return {
+        ...state,
+        isLogin: true,
+        currentUser: null,
+        token: null,
+        loginError: null,
+      };
+
+    // Handle a successful user login process
     case UserActionTypes.SIGN_IN_SUCCESS:
       return {
         ...state,
+        isLogin: false,
         currentUser: action.payload.user,
         token: action.payload.token,
-        error: null,
+        loginError: null,
+      };
+
+    // Handle a failed user login process
+    case UserActionTypes.SIGN_IN_FAILURE:
+      return {
+        ...state,
+        isLogin: false,
+        currentUser: null,
+        token: null,
+        loginError: action.payload,
       };
 
     // Handle a successful registration process
@@ -50,8 +77,6 @@ function userReducer(state = INITIAL_STATE, action) {
         error: null,
       };
 
-    // Handle a failed user process
-    case UserActionTypes.SIGN_IN_FAILURE:
     case UserActionTypes.REGISTER_FAILURE:
     case UserActionTypes.SIGN_OUT_FAILURE:
       return {

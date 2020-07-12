@@ -25,3 +25,19 @@ export function addCourseToCourseList(courseList, course) {
   courseList.push(course);
   return courseList;
 }
+
+/**
+ * Utility function to remove a course from the course list.
+ *
+ * @param {Array<CourseClass>} courseList - The list of courses in the array.
+ * @param {CourseClass} courseDelete - The course to delete.
+ */
+export function deleteCourseFromCourseList(courseList, courseDelete) {
+  courseList.splice(
+    courseList.findIndex(
+      (course) => course.courseCode === courseDelete.courseCode
+    ),
+    1
+  );
+  return courseList;
+}

@@ -4,6 +4,7 @@ import { createStructuredSelector } from "reselect";
 
 import CourseCardComponent from "../course-card/course-card.component";
 import LoaderComponent from "../loader/loader.component";
+import MenuNavbarComponent from "../../components/menu-navbar/menu-navbar.component";
 
 import {
   selectCourseList,
@@ -21,9 +22,16 @@ function CourseCanvasComponent({ courseList, fetchingCourseList }) {
           <LoaderComponent />
         </div>
       ) : courseList ? (
-        courseList.map((course) => (
-          <CourseCardComponent key={course.courseCode} course={course} />
-        ))
+        <div className="course-canvas-page-container">
+          <div className="course-canvas-menu-navbar">
+            <MenuNavbarComponent />
+          </div>
+          <div className="course-card-list-container">
+            {courseList.map((course) => (
+              <CourseCardComponent key={course.courseCode} course={course} />
+            ))}
+          </div>
+        </div>
       ) : (
         ""
       )}

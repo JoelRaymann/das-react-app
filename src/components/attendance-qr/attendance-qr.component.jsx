@@ -1,11 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
+import { useHistory } from "react-router-dom";
 
 import QRDisplayComponent from "../qr-display/qr-display.component";
 import ButtonComponent from "../button/button.component";
-
-import { selectCipherTexts } from "../../redux/attendance/attendance.selectors";
 
 import "./attendance-qr.styles.scss";
 
@@ -33,9 +30,10 @@ function useInterval(callback, delay) {
 /**
  * Redux Functional Component
  */
-function AttendanceQRComponent({ qrRotateDuration, cipherTexts }) {
+function AttendanceQRComponent({ qrRotateDuration, cipherTexts, courseCode }) {
   const [cipherIndex, setCipherIndex] = useState(0);
   const [endSession, setEndSession] = useState(false);
+  const history = useHistory();
 
   useInterval(
     () => {
@@ -45,7 +43,11 @@ function AttendanceQRComponent({ qrRotateDuration, cipherTexts }) {
         setEndSession(true);
       }
     },
-    endSession ? null : qrRotateDuration * 1000
+    endSession
+      ? history.push(
+          `/course-page/${courseCode}/attendance-page/review-attendance`
+        )
+      : qrRotateDuration * 1000
   );
 
   return (

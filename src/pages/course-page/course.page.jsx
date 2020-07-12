@@ -1,13 +1,14 @@
 import React from "react";
+import { Route, Switch } from "react-router-dom";
 
 import CourseCanvasComponent from "../../components/course-canvas/course-canvas.component";
-import MenuNavbarComponent from "../../components/menu-navbar/menu-navbar.component";
 
+import AddCoursePage from "../add-course-page/add-course-page.page";
 import CourseInfoPage from "../course-info-page/course-info.page";
 import AddStudentPage from "../add-student-page/add-student-page.page";
+import AttendancePage from "../attendance-page/attendance-page.page";
 
 import "./course.styles.scss";
-import { Route, Switch } from "react-router-dom";
 
 /**
  * React Functional Page for displaying the course page.
@@ -17,14 +18,19 @@ import { Route, Switch } from "react-router-dom";
 function CoursePage() {
   return (
     <div className="course-page-container">
-      <MenuNavbarComponent />
       <Switch>
+        <Route exact path="/course-page/add-course" component={AddCoursePage} />
+        <Route exact path="/course-page" component={CourseCanvasComponent} />
+
+        <Route
+          path="/course-page/:courseCode/attendance-page"
+          component={AttendancePage}
+        />
         <Route
           path="/course-page/:courseCode/add-students"
           component={AddStudentPage}
         />
         <Route path="/course-page/:courseCode" component={CourseInfoPage} />
-        <Route exact path="/course-page" component={CourseCanvasComponent} />
       </Switch>
     </div>
   );

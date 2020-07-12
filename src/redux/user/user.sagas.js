@@ -11,7 +11,10 @@ import {
   userSignOutSuccess,
   userSignOutFailure,
 } from "./user.actions";
-import { clearCourseList, getCourseListStart } from "../course/course.actions";
+import {
+  resetCourseReducer,
+  getCourseListStart,
+} from "../course/course.actions";
 import TeacherUser from "../../classes/teacher-user.class";
 
 // HANDLING SIGN IN PROCESSES
@@ -24,14 +27,14 @@ function* signInWithUser(action) {
     // Try to Login
     const {
       data: { token },
-    } = yield axios.post("https://das.pythonanywhere.com/api/token/login", {
+    } = yield axios.post("http://13.233.160.133:8080/api/token/login", {
       username: username,
       password: password,
     });
 
     // Fetch User data
     const userMetaResponse = yield axios.get(
-      `https://das.pythonanywhere.com/api/teachers/${username}`,
+      `http://13.233.160.133:8080/api/teachers/${username}`,
       {
         headers: {
           Authorization: `Token ${token}`,
@@ -73,7 +76,7 @@ function* registerNewUser(action) {
 
     // Launch an axios api call for registration
     const registerResponse = yield axios.post(
-      "https://das.pythonanywhere.com/api/register",
+      "http://13.233.160.133:8080/api/register",
       payload,
       registerHeader
     );
@@ -101,7 +104,7 @@ function* signOutWithUser(action) {
 
     // Do logout process
     const logoutResponse = yield axios.post(
-      "https://das.pythonanywhere.com/api/token/logout",
+      "http://13.233.160.133:8080/api/token/logout",
       null,
       {
         headers: {
@@ -110,7 +113,7 @@ function* signOutWithUser(action) {
       }
     );
     console.log(logoutResponse);
-    yield put(clearCourseList());
+    yield put(resetCourseReducer());
     yield put(userSignOutSuccess());
   } catch (error) {
     alert(`[ERROR]: Facing a logout error: ${error}`);

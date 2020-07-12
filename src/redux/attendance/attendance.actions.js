@@ -50,7 +50,7 @@ export function getAttendanceCipherTextSuccess(cipherTexts) {
  */
 export function getAttendanceCipherTextFailure(error) {
   return {
-    type: AttendanceActionTypes.GET_ATTENDANCE_CIPHERTEXT_SUCCESS,
+    type: AttendanceActionTypes.GET_ATTENDANCE_CIPHERTEXT_FAILURE,
     payload: error,
   };
 }

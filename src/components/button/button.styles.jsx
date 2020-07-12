@@ -29,6 +29,17 @@ const setButtonColor = (
       color: ${$secondaryTextColor};
       border: ${inverted ? `none` : `1px solid ${$primaryColor}`};
     }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+
+      &:hover {
+        background-color: ${$primaryColor};
+        color: ${$primaryTextColor};
+        border: ${inverted ? `1px solid ${$primaryTextColor}` : `none`};
+      }
+    }
   `;
 };
 

@@ -20,16 +20,24 @@ function* studentListFetching(action) {
       payload: { course, username, token },
     } = action;
     const { courseCode, courseSlot } = course;
+    console.log(course, username, token);
 
-    const studentListResponse = yield axios.get(
-      `https://das.pythonanywhere.com/api/attendance/class/${courseCode}/${courseSlot}/${username}`,
+    const studentListResponse = yield axios.post(
+      `http://13.233.160.133:8080/api/attendance/class`,
+      {
+        courseID: courseCode,
+        slot: courseSlot,
+        faculty_id: username,
+      },
       {
         headers: {
           Authorization: `Token ${token}`,
         },
       }
     );
-    const studentList = yield refineStudentList(studentListResponse.data);
+    const studentList = yield refineStudentList(
+      studentListResponse.data["attendance-class-info"]
+    );
     yield put(getStudentListSuccess(courseCode, studentList));
   } catch (error) {
     alert(`[ERROR]: Facing a student fetching error: ${error}`);
@@ -45,7 +53,7 @@ function* studentAttendanceListFetching(action) {
     const { courseCode, courseSlot } = course;
 
     const studentAttendanceListResponse = yield axios.get(
-      `https://das.pythonanywhere.com/api/attendance/list/${courseCode}/${courseSlot}/${username}/${date}/`,
+      `http://13.233.160.133:8080/api/attendance/list/${courseCode}/${courseSlot}/${username}/${date}/`,
       {
         headers: {
           Authorization: `Token ${sessionToken}`,

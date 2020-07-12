@@ -7,9 +7,9 @@ export const selectStudentLists = createSelector(
   (student) => student.studentLists
 );
 
-export const selectStudentAttendanceLists = createSelector(
+export const selectStudentAttendanceList = createSelector(
   [selectStudent],
-  (student) => student.selectStudentAttendanceLists
+  (student) => student.studentAttendanceList
 );
 
 export const selectIsFetchingStudentAttendanceList = createSelector(

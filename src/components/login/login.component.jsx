@@ -8,6 +8,7 @@ import ButtonComponent from "../button/button.component";
 import ButtonSpinnerComponent from "../button-spinner/button-spinner.component";
 
 import { userSignInStart } from "../../redux/user/user.actions";
+import { selectIsLogin } from "../../redux/user/user.selectors";
 
 import {
   selectCurrentUser,
@@ -16,16 +17,17 @@ import {
 
 import "./login.styles.scss";
 
-function LoginComponent({ userSignInStart, currentUser, sessionToken }) {
+function LoginComponent({
+  userSignInStart,
+  currentUser,
+  sessionToken,
+  isLogin,
+}) {
   const history = useHistory();
   // Define states
   const [userCredentials, setUserCredentials] = useState({
     username: "",
     password: "",
-  });
-  const [spinners, toggleSpinners] = useState({
-    signInSpinner: false,
-    googleSpinner: false,
   });
 
   /**
@@ -90,35 +92,19 @@ function LoginComponent({ userSignInStart, currentUser, sessionToken }) {
           <ButtonComponent
             type="submit"
             value="Submit Login"
-            onClick={() =>
-              toggleSpinners({
-                ...spinners,
-                signInSpinner: !spinners.signInSpinner,
-              })
-            }
             $primaryColor="#007aff"
             $primaryTextColor="#ffffff"
             $secondaryColor="#ffffff"
             $secondaryTextColor="#007aff"
           >
-            {spinners.signInSpinner ? <ButtonSpinnerComponent /> : "Sign In"}
+            {isLogin ? <ButtonSpinnerComponent /> : "Sign In"}
           </ButtonComponent>
           <ButtonComponent
             type="button"
-            onClick={() =>
-              toggleSpinners({
-                ...spinners,
-                googleSpinner: !spinners.googleSpinner,
-              })
-            }
             value="Submit Login"
             $specialClassStyle="google-sign-in"
           >
-            {spinners.googleSpinner ? (
-              <ButtonSpinnerComponent />
-            ) : (
-              "Google Sign In"
-            )}
+            "Google Sign In"
           </ButtonComponent>
         </div>
         <p className="register">
@@ -134,6 +120,7 @@ function LoginComponent({ userSignInStart, currentUser, sessionToken }) {
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
+  isLogin: selectIsLogin,
   sessionToken: selectSessionToken,
 });
 

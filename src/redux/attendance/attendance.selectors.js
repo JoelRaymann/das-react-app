@@ -11,3 +11,8 @@ export const selectCipherTextsError = createSelector(
   [selectAttendance],
   (attendance) => attendance.cipherTextsError
 );
+
+export const selectIsFetchingCipherTexts = createSelector(
+  [selectAttendance],
+  (attendance) => attendance.isFetchingCipherTexts
+);

@@ -6,7 +6,7 @@ import { createStructuredSelector } from "reselect";
 import LoaderComponent from "../loader/loader.component";
 import StudentReviewTableComponent from "../../components/student-review-table/student-review-table.component";
 import ButtonComponent from "../../components/button/button.component";
-import AttendanceFormModalComponent from "../attendance-form-modal/attendance-form-modal.component";
+import DeleteCourseModalComponent from "../delete-course-modal/delele-course-modal.component";
 
 import { getStudentListStart } from "../../redux/student/student.actions";
 
@@ -27,7 +27,7 @@ function CourseInfoComponent({
 }) {
   const history = useHistory();
 
-  const [attendanceModal, toggleAttendanceModal] = useState(false);
+  const [deleteModal, toggleDeleteModal] = useState(false);
 
   // Component did mount
   useEffect(() => {
@@ -49,6 +49,19 @@ function CourseInfoComponent({
           <div className="course-info-header">
             {`${course.courseCode} - ${course.courseName}`}
           </div>
+          <div
+            onClick={() => toggleDeleteModal(true)}
+            className="delete-course-button"
+          >
+            <img
+              src={
+                process.env.PUBLIC_URL +
+                "/assets/icons/course-info-icons/delete_icon.svg"
+              }
+              alt="Delete Course Icon"
+              className="delete-course-icon"
+            />
+          </div>
         </div>
         <StudentReviewTableComponent
           studentList={studentLists[course.courseCode]}
@@ -68,7 +81,10 @@ function CourseInfoComponent({
           </ButtonComponent>
           <ButtonComponent
             type="button"
-            onClick={() => toggleAttendanceModal(true)}
+            onClick={() => {
+              console.log("redirecting");
+              history.push(`/course-page/${course.courseCode}/attendance-page`);
+            }}
             $primaryColor="rgba(39, 174, 96, 1.0)"
             $primaryTextColor="#ffffff"
             $secondaryColor="#ffffff"
@@ -87,10 +103,12 @@ function CourseInfoComponent({
             Go Back
           </ButtonComponent>
         </div>
-        <AttendanceFormModalComponent
-          show={attendanceModal}
-          onHide={() => toggleAttendanceModal(false)}
+        <DeleteCourseModalComponent
+          show={deleteModal}
+          onHide={() => toggleDeleteModal(false)}
+          course={course}
         />
+        ;
       </div>
     );
   } else {
