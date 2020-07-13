@@ -23,7 +23,7 @@ function AttendanceFormModalComponent({
   onHide,
   course,
   qrRotationDuration,
-  username,
+  currentUser,
   sessionToken,
   getAttendanceCipherTextStart,
 }) {
@@ -52,14 +52,14 @@ function AttendanceFormModalComponent({
 
     getAttendanceCipherTextStart(
       course,
-      username,
+      currentUser.username,
       sessionDuration,
       sessionToken,
       qrRotationDuration
     );
 
     history.push(
-      `/course-page/${course.courseCode}/attendance-page/attendance-qr`
+      `/course-page/${course.courseCode}/${course.courseSlot}/attendance-page/attendance-qr`
     );
 
     onHide();

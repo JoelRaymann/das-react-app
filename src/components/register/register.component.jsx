@@ -123,7 +123,7 @@ function RegisterComponent(props) {
             $secondaryColor="#ffffff"
             $secondaryTextColor="#007aff"
           >
-            {spinners.registerSpinner ? <ButtonSpinnerComponent /> : "Login"}
+            {spinners.registerSpinner ? <ButtonSpinnerComponent /> : "Register"}
           </ButtonComponent>
           <ButtonComponent
             type="button"

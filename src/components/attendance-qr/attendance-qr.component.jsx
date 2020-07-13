@@ -30,10 +30,17 @@ function useInterval(callback, delay) {
 /**
  * Redux Functional Component
  */
-function AttendanceQRComponent({ qrRotateDuration, cipherTexts, courseCode }) {
+function AttendanceQRComponent({ qrRotateDuration, cipherTexts, course }) {
   const [cipherIndex, setCipherIndex] = useState(0);
   const [endSession, setEndSession] = useState(false);
   const history = useHistory();
+
+  // Get the current date
+  const date = new Date();
+  const yyyy = date.getFullYear();
+  const mm = String(date.getMonth() + 1).padStart(2, "0");
+  const dd = String(date.getDate()).padStart(2, "0");
+  const currentDate = `${yyyy}-${mm}-${dd}`;
 
   useInterval(
     () => {
@@ -45,7 +52,7 @@ function AttendanceQRComponent({ qrRotateDuration, cipherTexts, courseCode }) {
     },
     endSession
       ? history.push(
-          `/course-page/${courseCode}/attendance-page/review-attendance`
+          `/course-page/${course.courseCode}/${course.courseSlot}/attendance-page/${currentDate}/review-attendance`
         )
       : qrRotateDuration * 1000
   );

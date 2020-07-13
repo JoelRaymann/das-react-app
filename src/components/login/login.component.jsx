@@ -104,7 +104,7 @@ function LoginComponent({
             value="Submit Login"
             $specialClassStyle="google-sign-in"
           >
-            "Google Sign In"
+            Google Sign In
           </ButtonComponent>
         </div>
         <p className="register">

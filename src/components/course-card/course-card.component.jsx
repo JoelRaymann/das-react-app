@@ -27,13 +27,21 @@ function CourseCardComponent({ course }) {
             <button
               type="button"
               onClick={() => {
-                history.push(`/course-page/${courseCode}`);
+                history.push(`/course-page/${courseCode}/${courseSlot}`);
               }}
               className="course-button"
             >
               More Info
             </button>
-            <button type="button" className="course-button">
+            <button
+              type="button"
+              onClick={() => {
+                history.push(
+                  `/course-page/${courseCode}/${courseSlot}/attendance-page`
+                );
+              }}
+              className="course-button"
+            >
               Take Attendance
             </button>
           </div>

@@ -25,7 +25,8 @@ function StartAttendanceComponent({ course }) {
 
 const mapStateToProps = (state, ownProps) => ({
   course: selectCourseFromCourseList(
-    ownProps.match.params.courseCode.toUpperCase()
+    ownProps.match.params.courseCode.toUpperCase(),
+    ownProps.match.params.courseSlot
   )(state),
 });
 

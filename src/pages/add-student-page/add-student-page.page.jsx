@@ -18,7 +18,10 @@ function AddStudentPage({ course }) {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  course: selectCourseFromCourseList(ownProps.match.params.courseCode)(state),
+  course: selectCourseFromCourseList(
+    ownProps.match.params.courseCode,
+    ownProps.match.params.courseSlot
+  )(state),
 });
 
 export default connect(mapStateToProps)(AddStudentPage);

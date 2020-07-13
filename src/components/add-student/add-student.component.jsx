@@ -41,7 +41,9 @@ function AddStudentComponent({ course, currentUser, cleanStudentList }) {
         <ButtonComponent
           onClick={() => {
             cleanStudentList();
-            history.push(`/course-page/${course.courseCode}`);
+            history.push(
+              `/course-page/${course.courseCode}/${course.courseSlot}`
+            );
           }}
           type="button"
         >

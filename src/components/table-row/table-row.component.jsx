@@ -12,7 +12,11 @@ function TableRowComponent({ rowData, ...stylingProps }) {
   return (
     <StyledTableRowComponent {...stylingProps}>
       {Object.entries(rowData).map((element) => {
-        return <div data-label={element[0]}>{element[1]}</div>;
+        return (
+          <div key={element[0]} data-label={element[0]}>
+            {element[1]}
+          </div>
+        );
       })}
     </StyledTableRowComponent>
   );

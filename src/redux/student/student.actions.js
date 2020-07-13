@@ -60,7 +60,7 @@ export function getStudentAttendanceListStart(
   sessionToken
 ) {
   return {
-    type: StudentActionTypes.GET_STUDENT_LIST_DATEWISE_START,
+    type: StudentActionTypes.GET_STUDENT_ATTENDANCE_LIST_START,
     payload: {
       course: course,
       username: username,
@@ -79,7 +79,7 @@ export function getStudentAttendanceListStart(
  */
 export function getStudentAttendanceListSuccess(studentAttendanceList) {
   return {
-    type: StudentActionTypes.GET_STUDENT_LIST_DATEWISE_SUCCESS,
+    type: StudentActionTypes.GET_STUDENT_ATTENDANCE_LIST_SUCCESS,
     payload: studentAttendanceList,
   };
 }
@@ -92,7 +92,7 @@ export function getStudentAttendanceListSuccess(studentAttendanceList) {
  */
 export function getStudentAttendanceListFailure(error) {
   return {
-    type: StudentActionTypes.GET_STUDENT_LIST_DATEWISE_FAILURE,
+    type: StudentActionTypes.GET_STUDENT_ATTENDANCE_LIST_FAILURE,
     payload: error,
   };
 }

@@ -1,11 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
 import { Redirect } from "react-router-dom";
 
 import AttendanceQRComponent from "../../components/attendance-qr/attendance-qr.component";
 import LoaderComponent from "../../components/loader/loader.component";
 
+import { selectCourseFromCourseList } from "../../redux/course/course.selectors";
 import {
   selectCipherTexts,
   selectCipherTextsError,
@@ -13,12 +13,12 @@ import {
 
 import "./attendance-qr-page.styles.scss";
 
-function AttendanceQRPage({ cipherTexts, cipherTextsError, match }) {
+function AttendanceQRPage({ cipherTexts, cipherTextsError, course }) {
   if (cipherTexts.length > 0) {
     return (
       <div className="attendance-qr-page-container">
         <AttendanceQRComponent
-          courseCode={match.params.courseCode}
+          course={course}
           cipherTexts={cipherTexts}
           qrRotateDuration={3}
         />
@@ -31,9 +31,13 @@ function AttendanceQRPage({ cipherTexts, cipherTextsError, match }) {
   }
 }
 
-const mapStateToProps = createStructuredSelector({
-  cipherTexts: selectCipherTexts,
-  cipherTextsError: selectCipherTextsError,
+const mapStateToProps = (state, ownProps) => ({
+  cipherTexts: selectCipherTexts(state),
+  cipherTextsError: selectCipherTextsError(state),
+  course: selectCourseFromCourseList(
+    ownProps.match.params.courseCode.toUpperCase(),
+    ownProps.match.params.courseSlot
+  )(state),
 });
 
 export default connect(mapStateToProps)(AttendanceQRPage);

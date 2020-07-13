@@ -20,7 +20,6 @@ function* studentListFetching(action) {
       payload: { course, username, token },
     } = action;
     const { courseCode, courseSlot } = course;
-    console.log(course, username, token);
 
     const studentListResponse = yield axios.post(
       `http://13.233.160.133:8080/api/attendance/class`,
@@ -53,7 +52,7 @@ function* studentAttendanceListFetching(action) {
     const { courseCode, courseSlot } = course;
 
     const studentAttendanceListResponse = yield axios.get(
-      `http://13.233.160.133:8080/api/attendance/list/${courseCode}/${courseSlot}/${username}/${date}/`,
+      `http://13.233.160.133:8080/api/attendance/course/${courseCode}/${courseSlot}/${username}/${date}/`,
       {
         headers: {
           Authorization: `Token ${sessionToken}`,
@@ -61,6 +60,7 @@ function* studentAttendanceListFetching(action) {
       }
     );
 
+    console.log(studentAttendanceListResponse.data);
     const studentAttendanceList = yield refineStudentAttendanceList(
       studentAttendanceListResponse.data
     );

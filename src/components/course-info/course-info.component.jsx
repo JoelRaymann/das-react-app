@@ -65,7 +65,9 @@ function CourseInfoComponent({
           <ButtonComponent
             type="button"
             onClick={() =>
-              history.push(`/course-page/${course.courseCode}/add-students`)
+              history.push(
+                `/course-page/${course.courseCode}/${course.courseSlot}/add-students`
+              )
             }
             $primaryColor="#007aff"
             $primaryTextColor="#ffffff"
@@ -78,7 +80,9 @@ function CourseInfoComponent({
             type="button"
             onClick={() => {
               console.log("redirecting");
-              history.push(`/course-page/${course.courseCode}/attendance-page`);
+              history.push(
+                `/course-page/${course.courseCode}/${course.courseSlot}/attendance-page`
+              );
             }}
             $primaryColor="rgba(39, 174, 96, 1.0)"
             $primaryTextColor="#ffffff"

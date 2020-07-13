@@ -23,14 +23,17 @@ function CoursePage() {
         <Route exact path="/course-page" component={CourseCanvasComponent} />
 
         <Route
-          path="/course-page/:courseCode/attendance-page"
+          path="/course-page/:courseCode/:courseSlot/attendance-page"
           component={AttendancePage}
         />
         <Route
-          path="/course-page/:courseCode/add-students"
+          path="/course-page/:courseCode/:courseSlot/add-students"
           component={AddStudentPage}
         />
-        <Route path="/course-page/:courseCode" component={CourseInfoPage} />
+        <Route
+          path="/course-page/:courseCode/:courseSlot"
+          component={CourseInfoPage}
+        />
       </Switch>
     </div>
   );

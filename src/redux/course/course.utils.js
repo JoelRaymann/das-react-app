@@ -35,7 +35,9 @@ export function addCourseToCourseList(courseList, course) {
 export function deleteCourseFromCourseList(courseList, courseDelete) {
   courseList.splice(
     courseList.findIndex(
-      (course) => course.courseCode === courseDelete.courseCode
+      (course) =>
+        course.courseCode === courseDelete.courseCode &&
+        course.courseSlot === courseDelete.courseSlot
     ),
     1
   );

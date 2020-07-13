@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { useHistory } from "react-router-dom";
@@ -32,7 +32,7 @@ function AttendanceReviewTableComponent({
   isFetchingStudentAttendanceList,
   currentUser,
   sessionToken,
-  currentDate,
+  date,
   course,
   getStudentAttendanceListStart,
 }) {
@@ -55,6 +55,20 @@ function AttendanceReviewTableComponent({
   } = state;
   const history = useHistory();
 
+  useEffect(() => {
+    setState((state) => ({
+      ...state,
+      presentList: studentAttendanceList.filter(
+        (studentAttendance) => studentAttendance.attendanceStatus === true
+      ),
+      absentList: studentAttendanceList.filter(
+        (studentAttendance) => studentAttendance.attendanceStatus === false
+      ),
+      toggledPresentList: [],
+      toggledAbsentList: [],
+    }));
+  }, [studentAttendanceList]);
+
   /**
    * Function to handle the entire logic for
    * toggling attendance. NOTE: You can add sorting
@@ -74,11 +88,11 @@ function AttendanceReviewTableComponent({
           ),
           1
         );
-        setState({
+        setState((state) => ({
           ...state,
           absentList: absentList,
           toggledPresentList: toggledPresentList,
-        });
+        }));
 
         break;
 
@@ -90,11 +104,11 @@ function AttendanceReviewTableComponent({
           ),
           1
         );
-        setState({
+        setState((state) => ({
           ...state,
           presentList: presentList,
           toggledAbsentList: toggledAbsentList,
-        });
+        }));
         break;
 
       case OperationTypes.REVERT_PRESENT:
@@ -105,11 +119,11 @@ function AttendanceReviewTableComponent({
           ),
           1
         );
-        setState({
+        setState((state) => ({
           ...state,
           absentList: absentList,
           toggledPresentList: toggledPresentList,
-        });
+        }));
         break;
 
       case OperationTypes.REVERT_ABSENT:
@@ -120,11 +134,11 @@ function AttendanceReviewTableComponent({
           ),
           1
         );
-        setState({
+        setState((state) => ({
           ...state,
           presentList: presentList,
           toggledAbsentList: toggledAbsentList,
-        });
+        }));
         break;
       default:
         break;
@@ -142,34 +156,27 @@ function AttendanceReviewTableComponent({
     const payload = [];
 
     toggledPresentList.forEach((toggled) => {
-      payload.push(
-        JSON.stringify({
-          username: toggled.studentId,
-          name: toggled.studentName,
-          date: currentDate,
-          is_present: true,
-        })
-      );
+      payload.push({
+        username: toggled.studentId,
+        name: toggled.studentName,
+        date: date,
+        is_present: true,
+      });
     });
 
     toggledAbsentList.forEach((toggled) => {
-      payload.push(
-        JSON.stringify({
-          username: toggled.studentId,
-          name: toggled.studentName,
-          date: currentDate,
-          is_present: false,
-        })
-      );
+      payload.push({
+        username: toggled.studentId,
+        name: toggled.studentName,
+        date: date,
+        is_present: false,
+      });
     });
 
     try {
-      event.preventDefault();
       const attendanceResponse = await axios.patch(
-        `http://13.233.160.133:8080/api/attendance/course/${course.courseCode}/${course.courseSlot}/${currentUser.username}/${currentDate}/batch_update`,
-        {
-          payload,
-        },
+        `http://13.233.160.133:8080/api/attendance/course/${course.courseCode}/${course.courseSlot}/${currentUser.username}/${date}/batch_update`,
+        payload,
         {
           headers: {
             Authorization: `Token ${sessionToken}`,
@@ -183,7 +190,7 @@ function AttendanceReviewTableComponent({
       getStudentAttendanceListStart(
         course,
         currentUser.username,
-        currentDate,
+        date,
         sessionToken
       );
     } catch (error) {
@@ -212,6 +219,8 @@ function AttendanceReviewTableComponent({
   }
 
   if (isFetchingStudentAttendanceList) {
+    return <LoaderComponent />;
+  } else {
     return (
       <div className="student-attendance-review-table-container">
         <div className="student-attendance-review-table">
@@ -396,8 +405,6 @@ function AttendanceReviewTableComponent({
         </div>
       </div>
     );
-  } else {
-    return <LoaderComponent />;
   }
 }
 

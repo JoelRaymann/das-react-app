@@ -28,7 +28,10 @@ function CourseCanvasComponent({ courseList, fetchingCourseList }) {
           </div>
           <div className="course-card-list-container">
             {courseList.map((course) => (
-              <CourseCardComponent key={course.courseCode} course={course} />
+              <CourseCardComponent
+                key={`${course.courseCode}-${course.courseSlot}`}
+                course={course}
+              />
             ))}
           </div>
         </div>

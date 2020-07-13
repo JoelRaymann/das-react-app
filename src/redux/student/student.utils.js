@@ -44,13 +44,13 @@ export function removeStudentList(studentLists, courseCode) {
 export function refineStudentAttendanceList(rawStudentAttendanceList) {
   const refinedStudentAttendanceList = [];
 
-  for (let i = 0; i < refinedStudentAttendanceList.length; ++i) {
+  for (let i = 0; i < rawStudentAttendanceList.length; ++i) {
     const { username, name, is_present } = rawStudentAttendanceList[i];
 
-    refineStudentAttendanceList.push(
+    refinedStudentAttendanceList.push(
       new StudentAttendanceClass(username, name, is_present)
     );
   }
 
-  return refineStudentAttendanceList;
+  return refinedStudentAttendanceList;
 }

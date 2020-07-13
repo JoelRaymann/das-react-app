@@ -14,44 +14,36 @@ import "./attendance-review-page.styles.scss";
 
 function AttendanceReviewPage({
   course,
-  username,
+  currentUser,
   sessionToken,
   getStudentAttendanceListStart,
+  date,
 }) {
-  // Get the current date
-  const date = new Date();
-  const yyyy = date.getFullYear();
-  const mm = String(date.getMonth() + 1).padStart(2, "0");
-  const dd = String(date.getDate()).padStart(2, "0");
-  const currentDate = `${yyyy}-${mm}-${dd}`;
-
   useEffect(() => {
     // Calling the saga to get the student attendance
-    getStudentAttendanceListStart(course, username, currentDate, sessionToken);
-  }, [
-    getStudentAttendanceListStart,
-    course,
-    username,
-    sessionToken,
-    currentDate,
-  ]);
+    getStudentAttendanceListStart(
+      course,
+      currentUser.username,
+      date,
+      sessionToken
+    );
+  }, [getStudentAttendanceListStart, course, currentUser, sessionToken, date]);
 
   return (
     <div className="attendance-review-page-container">
-      <AttendanceReviewTableComponent
-        course={course}
-        currentDate={currentDate}
-      />
+      <AttendanceReviewTableComponent course={course} date={date} />
     </div>
   );
 }
 
 const mapStateToProps = (state, ownProps) => ({
   course: selectCourseFromCourseList(
-    ownProps.match.params.courseCode.toUpperCase()
+    ownProps.match.params.courseCode.toUpperCase(),
+    ownProps.match.params.courseSlot
   )(state),
   currentUser: selectCurrentUser(state),
   sessionToken: selectSessionToken(state),
+  date: ownProps.match.params.date,
 });
 
 const mapStateToDispatch = (dispatch) => ({

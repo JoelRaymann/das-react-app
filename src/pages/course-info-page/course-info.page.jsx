@@ -29,7 +29,8 @@ function CourseInfoPage({ course }) {
 const mapStateToProps = (state, ownProps) => {
   return {
     course: selectCourseFromCourseList(
-      ownProps.match.params.courseCode.toUpperCase()
+      ownProps.match.params.courseCode.toUpperCase(),
+      ownProps.match.params.courseSlot
     )(state),
   };
 };
