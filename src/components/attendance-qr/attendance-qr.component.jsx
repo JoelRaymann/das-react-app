@@ -63,7 +63,14 @@ function AttendanceQRComponent({ qrRotateDuration, cipherTexts, course }) {
         <QRDisplayComponent value={cipherTexts[cipherIndex]} />
       </div>
       <div className="attendance-qr-button-placement">
-        <ButtonComponent type="button" onClick={() => setEndSession(true)}>
+        <ButtonComponent
+          type="button"
+          onClick={() => setEndSession(true)}
+          $primaryColor="rgba(192, 57, 43, 1.0)"
+          $primaryTextColor="#ffffff"
+          $secondaryColor="#ffffff"
+          $secondaryTextColor="rgba(192, 57, 43, 1.0)"
+        >
           End Session
         </ButtonComponent>
       </div>

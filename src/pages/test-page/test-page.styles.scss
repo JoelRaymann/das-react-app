@@ -1,0 +1,14 @@
+.test-page-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+
+  .edit-attendance-page-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

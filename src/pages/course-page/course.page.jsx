@@ -7,6 +7,7 @@ import AddCoursePage from "../add-course-page/add-course-page.page";
 import CourseInfoPage from "../course-info-page/course-info.page";
 import AddStudentPage from "../add-student-page/add-student-page.page";
 import AttendancePage from "../attendance-page/attendance-page.page";
+import EditAttendancePage from "../edit-attendance-page/edit-attendance-page.page";
 
 import "./course.styles.scss";
 
@@ -29,6 +30,11 @@ function CoursePage() {
         <Route
           path="/course-page/:courseCode/:courseSlot/add-students"
           component={AddStudentPage}
+        />
+
+        <Route
+          path="/course-page/:courseCode/:courseSlot/edit-attendance"
+          component={EditAttendancePage}
         />
         <Route
           path="/course-page/:courseCode/:courseSlot"

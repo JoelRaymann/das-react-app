@@ -1,5 +1,6 @@
 import { takeLatest, put, all, call } from "redux-saga/effects";
 import axios from "axios";
+import BASEURL from "../network.env";
 
 import CourseActionTypes from "./course.types";
 import {
@@ -23,7 +24,7 @@ function* fetchCourseList(action) {
 
     // Send a course list response
     const courseListResponse = yield axios.get(
-      `http://13.233.160.133:8080/api/teachers/${username}/courses`,
+      `${BASEURL}/teachers/${username}/courses`,
       {
         headers: {
           Authorization: `Token ${token}`,
@@ -61,7 +62,7 @@ function* addCourse(action) {
     };
 
     const addCourseResponse = yield axios.post(
-      `http://13.233.160.133:8080/api/courses`,
+      `${BASEURL}/courses`,
       payloadCourse,
       {
         headers: {
@@ -85,7 +86,7 @@ function* deleteCourse(action) {
     const { courseCode, courseSlot } = course;
 
     const courseDeletionResponse = yield axios.post(
-      `http://13.233.160.133:8080/api/delete_course`,
+      `${BASEURL}/delete_course`,
       {
         courseID: courseCode,
         slot: courseSlot,

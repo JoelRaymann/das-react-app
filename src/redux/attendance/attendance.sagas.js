@@ -1,11 +1,14 @@
 import { takeLatest, call, put, all } from "redux-saga/effects";
 import axios from "axios";
+import BASEURL from "../network.env";
 
 import AttendanceActionTypes from "./attendance.types";
 
 import {
   getAttendanceCipherTextSuccess,
   getAttendanceCipherTextFailure,
+  getDateListSuccess,
+  getDateListFailure,
 } from "./attendance.actions";
 
 function* fetchAttendanceCipherText(action) {
@@ -17,7 +20,7 @@ function* fetchAttendanceCipherText(action) {
     const { courseCode, courseSlot } = course;
 
     const cipherResponse = yield axios.post(
-      "http://13.233.160.133:8080/api/createqr",
+      `${BASEURL}/createqr`,
       {
         courseID: courseCode,
         slot: courseSlot,
@@ -38,6 +41,29 @@ function* fetchAttendanceCipherText(action) {
   }
 }
 
+function* fetchDateList(action) {
+  try {
+    const {
+      payload: { course, username, sessionToken },
+    } = action;
+    const { courseCode, courseSlot } = course;
+
+    const dateListResponse = yield axios.get(
+      `${BASEURL}/attendance/course/${courseCode}/${courseSlot}/${username}/valid_dates`,
+      {
+        headers: {
+          Authorization: `Token ${sessionToken}`,
+        },
+      }
+    );
+    const { dates } = yield dateListResponse.data;
+    yield put(getDateListSuccess(dates));
+  } catch (error) {
+    alert(`[ERROR]: Error in fetching datelist: ${error}`);
+    yield put(getDateListFailure(error));
+  }
+}
+
 /**
  * Redux Saga to listen and handle the fetching process for the ciphertexts to proceed
  * with the attendance session.
@@ -49,6 +75,10 @@ export function* onFetchAttendanceCipherText() {
   );
 }
 
+export function* onFetchDateList() {
+  yield takeLatest(AttendanceActionTypes.GET_DATELIST_START, fetchDateList);
+}
+
 export function* attendanceSaga() {
-  yield all([call(onFetchAttendanceCipherText)]);
+  yield all([call(onFetchAttendanceCipherText), call(onFetchDateList)]);
 }

@@ -1,5 +1,6 @@
 import { takeLatest, all, call, put } from "redux-saga/effects";
 import axios from "axios";
+import BASEURL from "../network.env";
 
 import StudentActionTypes from "./student.types";
 import {
@@ -22,7 +23,7 @@ function* studentListFetching(action) {
     const { courseCode, courseSlot } = course;
 
     const studentListResponse = yield axios.post(
-      `http://13.233.160.133:8080/api/attendance/class`,
+      `${BASEURL}/attendance/class`,
       {
         courseID: courseCode,
         slot: courseSlot,
@@ -52,7 +53,7 @@ function* studentAttendanceListFetching(action) {
     const { courseCode, courseSlot } = course;
 
     const studentAttendanceListResponse = yield axios.get(
-      `http://13.233.160.133:8080/api/attendance/course/${courseCode}/${courseSlot}/${username}/${date}/`,
+      `${BASEURL}/attendance/course/${courseCode}/${courseSlot}/${username}/${date}/`,
       {
         headers: {
           Authorization: `Token ${sessionToken}`,

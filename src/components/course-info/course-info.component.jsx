@@ -93,6 +93,20 @@ function CourseInfoComponent({
           </ButtonComponent>
           <ButtonComponent
             type="button"
+            onClick={() =>
+              history.push(
+                `/course-page/${course.courseCode}/${course.courseSlot}/edit-attendance`
+              )
+            }
+            $primaryColor="rgba(192, 57, 43, 1.0)"
+            $primaryTextColor="#ffffff"
+            $secondaryColor="#ffffff"
+            $secondaryTextColor="rgba(192, 57, 43, 1.0)"
+          >
+            Edit Attendance
+          </ButtonComponent>
+          <ButtonComponent
+            type="button"
             onClick={() => history.push("/course-page")}
             $primaryColor="rgba(192, 57, 43, 1.0)"
             $primaryTextColor="#ffffff"

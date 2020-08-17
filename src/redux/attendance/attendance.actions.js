@@ -54,3 +54,46 @@ export function getAttendanceCipherTextFailure(error) {
     payload: error,
   };
 }
+
+/**
+ * Redux Action Function to start the datelist fetching process for
+ * the given course.
+ *
+ * @param {CourseClass} course - The course to fetch the datelist.
+ * @param {String} username - The current user's username.
+ * @param {String} sessionToken - The session token.
+ */
+export function getDateListStart(course, username, sessionToken) {
+  return {
+    type: AttendanceActionTypes.GET_DATELIST_START,
+    payload: {
+      course: course,
+      username: username,
+      sessionToken: sessionToken,
+    },
+  };
+}
+
+/**
+ * Redux Action Function to handle a successful datelist fetch.
+ *
+ * @param {Array<String>} dateList - The array of datelists received from the server.
+ */
+export function getDateListSuccess(dateList) {
+  return {
+    type: AttendanceActionTypes.GET_DATELIST_SUCCESS,
+    payload: dateList,
+  };
+}
+
+/**
+ * Redux Action Function to handle a failed datelist fetch.
+ *
+ * @param {String} error - The error message.
+ */
+export function getDateListFailure(error) {
+  return {
+    type: AttendanceActionTypes.GET_DATELIST_FAILURE,
+    payload: error,
+  };
+}

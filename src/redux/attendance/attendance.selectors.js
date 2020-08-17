@@ -16,3 +16,13 @@ export const selectIsFetchingCipherTexts = createSelector(
   [selectAttendance],
   (attendance) => attendance.isFetchingCipherTexts
 );
+
+export const selectDateList = createSelector(
+  [selectAttendance],
+  (attendance) => attendance.dateList
+);
+
+export const selectIsFetchingDateList = createSelector(
+  [selectAttendance],
+  (attendance) => attendance.isFetchingDateList
+);

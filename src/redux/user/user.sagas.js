@@ -1,5 +1,6 @@
 import { takeLatest, put, all, call } from "redux-saga/effects";
 import axios from "axios";
+import BASEURL from "../network.env";
 
 import UserActionTypes from "./user.types";
 
@@ -27,14 +28,14 @@ function* signInWithUser(action) {
     // Try to Login
     const {
       data: { token },
-    } = yield axios.post("http://13.233.160.133:8080/api/token/login", {
+    } = yield axios.post(`${BASEURL}/token/login`, {
       username: username,
       password: password,
     });
 
     // Fetch User data
     const userMetaResponse = yield axios.get(
-      `http://13.233.160.133:8080/api/teachers/${username}`,
+      `${BASEURL}/teachers/${username}`,
       {
         headers: {
           Authorization: `Token ${token}`,
@@ -76,7 +77,7 @@ function* registerNewUser(action) {
 
     // Launch an axios api call for registration
     const registerResponse = yield axios.post(
-      "http://13.233.160.133:8080/api/register",
+      `${BASEURL}/register`,
       payload,
       registerHeader
     );
@@ -103,15 +104,11 @@ function* signOutWithUser(action) {
     const token = action.payload;
 
     // Do logout process
-    const logoutResponse = yield axios.post(
-      "http://13.233.160.133:8080/api/token/logout",
-      null,
-      {
-        headers: {
-          Authorization: `Token ${token}`,
-        },
-      }
-    );
+    const logoutResponse = yield axios.post(`${BASEURL}/token/logout`, null, {
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    });
     console.log(logoutResponse);
     yield put(resetCourseReducer());
     yield put(userSignOutSuccess());

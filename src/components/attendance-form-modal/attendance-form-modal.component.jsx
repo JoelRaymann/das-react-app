@@ -126,7 +126,10 @@ function AttendanceFormModalComponent({
               label="Session Duration"
               type="number"
               name="sessionDuration"
-              iconPath={process.env.PUBLIC_URL + "/assets/icons/user_icon.svg"}
+              iconPath={
+                process.env.PUBLIC_URL +
+                "/assets/icons/attendance-icons/session_icon.svg"
+              }
               value={sessionDuration}
               handleChange={handleChange}
               required

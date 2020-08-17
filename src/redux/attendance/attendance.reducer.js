@@ -1,6 +1,12 @@
 import AttendanceActionTypes from "./attendance.types";
 
 const INITIAL_STATE = {
+  // Fetching DateLists for attendance fetch
+  dateList: null,
+  isFetchingDateList: false,
+  dateListError: null,
+
+  // Fetching CipherTexts
   cipherTexts: [],
   isFetchingCipherTexts: false,
   cipherTextsError: null,
@@ -33,6 +39,33 @@ function attendanceReducer(state = INITIAL_STATE, action) {
         cipherTexts: [],
         isFetchingCipherTexts: false,
         cipherTextsError: action.payload,
+      };
+
+    // Handle the date list fetch starting process
+    case AttendanceActionTypes.GET_DATELIST_START:
+      return {
+        ...state,
+        dateList: null,
+        isFetchingDateList: true,
+        dateListError: null,
+      };
+
+    // Handle the date list fetch success
+    case AttendanceActionTypes.GET_DATELIST_SUCCESS:
+      return {
+        ...state,
+        dateList: action.payload,
+        isFetchingDateList: false,
+        dateListError: null,
+      };
+
+    // Handle the date list fetch failure
+    case AttendanceActionTypes.GET_DATELIST_FAILURE:
+      return {
+        ...state,
+        dateList: null,
+        isFetchingDateList: false,
+        dateListError: action.payload,
       };
 
     default:

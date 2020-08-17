@@ -81,7 +81,10 @@ function AddCourseFormComponent({
           handleChange={handleChange}
           type="text"
           name="courseName"
-          iconPath={process.env.PUBLIC_URL + "/assets/icons/user_icon.svg"}
+          iconPath={
+            process.env.PUBLIC_URL +
+            "/assets/icons/add-course-icons/add_course_icon.svg"
+          }
           value={courseName}
           required
         />
@@ -90,7 +93,10 @@ function AddCourseFormComponent({
           handleChange={handleChange}
           type="text"
           name="courseCode"
-          iconPath={process.env.PUBLIC_URL + "/assets/icons/lock_icon.svg"}
+          iconPath={
+            process.env.PUBLIC_URL +
+            "/assets/icons/add-course-icons/add_course_icon.svg"
+          }
           value={courseCode}
           required
         />
@@ -99,28 +105,31 @@ function AddCourseFormComponent({
           handleChange={handleChange}
           type="text"
           name="courseSlot"
-          iconPath={process.env.PUBLIC_URL + "/assets/icons/lock_icon.svg"}
+          iconPath={
+            process.env.PUBLIC_URL +
+            "/assets/icons/add-course-icons/add_course_icon.svg"
+          }
           value={courseSlot}
           required
         />
         <div className="add-course-button-container">
           <ButtonComponent
             type="submit"
-            value="Submit Login"
-            $primaryColor="#007aff"
+            value="Submit Add Course"
+            $primaryColor="rgba(39, 174, 96, 1.0)"
             $primaryTextColor="#ffffff"
             $secondaryColor="#ffffff"
-            $secondaryTextColor="#007aff"
+            $secondaryTextColor="rgba(39, 174, 96, 1.0)"
           >
             {addCourseInProgress ? <ButtonSpinnerComponent /> : "Add Course"}
           </ButtonComponent>
           <ButtonComponent
             type="button"
             onClick={() => history.push("/course-page")}
-            $primaryColor="#007aff"
+            $primaryColor="rgba(192, 57, 43, 1.0)"
             $primaryTextColor="#ffffff"
             $secondaryColor="#ffffff"
-            $secondaryTextColor="#007aff"
+            $secondaryTextColor="rgba(192, 57, 43, 1.0)"
           >
             Go Back
           </ButtonComponent>
