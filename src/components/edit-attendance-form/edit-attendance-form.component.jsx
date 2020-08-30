@@ -96,11 +96,24 @@ function EditAttendanceFormComponent({ course, dateList, isFetchingDateList }) {
    * Function to handle the date submission for editing attendance.
    */
   function HandleQueryClick() {
-    alert(selectedDate);
+    console.log(selectedDate);
+    let mm = selectedDate.getMonth() + 1;
+    mm = mm < 10 ? `0${mm}` : `${mm}`;
+    let dd = selectedDate.getDate();
+    dd = dd < 10 ? `0${dd}` : `${dd}`;
+    let yyyy = selectedDate.getFullYear();
+
+    const dateString = `${yyyy}-${mm}-${dd}`;
+    history.push(
+      `/course-page/${course.courseCode.toUpperCase()}/${course.courseSlot.toUpperCase()}/attendance-page/${dateString}/review-attendance`
+    );
   }
+
   if (isFetchingDateList || dateList === null) {
     return <LoaderComponent />;
   } else if (dateList.length === 0) {
+    console.log(`There is no date at all: ${dateList}, ${dateList.length}`);
+
     return (
       <div className="date-list-empty-container">
         <NoDateListModal show={true} onHide={history.goBack} />
@@ -110,7 +123,7 @@ function EditAttendanceFormComponent({ course, dateList, isFetchingDateList }) {
     const [minDate, maxDate, disabledDateLists] = generateDisabledDateList(
       dateList
     );
-    setSelectedDate(minDate);
+
     return (
       <StyledEditAttendanceFormContainer className="edit-attendance-form-container">
         <StyledCalendarContainer>
@@ -130,8 +143,8 @@ function EditAttendanceFormComponent({ course, dateList, isFetchingDateList }) {
                 default: "#333",
                 active: "#FFF",
               },
-              weekdayColor: "black",
-              headerColor: "black",
+              weekdayColor: "#23232e",
+              headerColor: "#23232e",
             }}
             displayOptions={{
               showTodayHelper: false,

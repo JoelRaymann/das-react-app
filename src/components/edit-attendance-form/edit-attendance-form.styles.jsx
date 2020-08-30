@@ -3,16 +3,17 @@ import InfiniteCalendar from "react-infinite-calendar";
 import { ModalFooter } from "react-bootstrap";
 
 export const StyledCalendarContainer = styled.div`
-  padding: 7.5px 0 7.5px 7.5px;
+  width: fit-content;
+  height: fit-content;
+  padding: 7.5px;
   border-radius: 4px;
-  background-color: black;
   box-shadow: 0 0.1rem 0.5rem 0.5rem rgba(70, 70, 70, 0.8);
+  background-color: #23232e;
 `;
 
 export const StyledEditAttendanceFormContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-content: center;
   justify-content: center;
 
   .edit-attendance-button-container {

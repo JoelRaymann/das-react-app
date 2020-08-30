@@ -20,16 +20,12 @@ function EditAttendancePage({
   sessionToken,
   getDateListStart,
 }) {
-  getDateListStart(course, currentUser, sessionToken);
+  getDateListStart(course, currentUser.username, sessionToken);
 
   return (
     <div className="edit-attendance-page-container">
-      <div className="edit-attendance-page-menubar">
-        <MenuNavbarComponent />
-      </div>
-      <div className="edit-attendance-page-content">
-        <EditAttendanceFormComponent course={course} />
-      </div>
+      <MenuNavbarComponent />
+      <EditAttendanceFormComponent course={course} />
     </div>
   );
 }

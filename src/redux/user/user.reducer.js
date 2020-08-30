@@ -59,13 +59,27 @@ function userReducer(state = INITIAL_STATE, action) {
         loginError: action.payload,
       };
 
+    case UserActionTypes.REGISTER_START:
+      return {
+        ...state,
+        isRegistering: true,
+        registerError: null,
+      };
+
     // Handle a successful registration process
     case UserActionTypes.REGISTER_SUCCESS:
       return {
         ...state,
-        currentUser: null,
-        token: null,
-        error: null,
+        isRegistering: false,
+        registerError: null,
+      };
+
+    // Handle a failed register
+    case UserActionTypes.REGISTER_FAILURE:
+      return {
+        ...state,
+        isRegistering: false,
+        registerError: action.payload,
       };
 
     // Handle a successful sign-out process
@@ -77,7 +91,7 @@ function userReducer(state = INITIAL_STATE, action) {
         error: null,
       };
 
-    case UserActionTypes.REGISTER_FAILURE:
+    // Handle a failed sign-out process
     case UserActionTypes.SIGN_OUT_FAILURE:
       return {
         ...state,

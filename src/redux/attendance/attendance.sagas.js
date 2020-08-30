@@ -48,6 +48,8 @@ function* fetchDateList(action) {
     } = action;
     const { courseCode, courseSlot } = course;
 
+    console.log(action.payload);
+
     const dateListResponse = yield axios.get(
       `${BASEURL}/attendance/course/${courseCode}/${courseSlot}/${username}/valid_dates`,
       {

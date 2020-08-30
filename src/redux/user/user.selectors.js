@@ -16,3 +16,13 @@ export const selectIsLogin = createSelector(
   [selectUser],
   (user) => user.isLogin
 );
+
+export const selectIsRegistering = createSelector(
+  [selectUser],
+  (user) => user.isRegistering
+);
+
+export const selectRegisterError = createSelector(
+  [selectUser],
+  (user) => user.registerError
+);

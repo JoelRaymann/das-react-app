@@ -1,13 +1,25 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { createStructuredSelector } from "reselect";
+import { connect } from "react-redux";
 
 import FormInputComponent from "../form-input/form-input.component";
 import ButtonComponent from "../button/button.component";
 import ButtonSpinnerComponent from "../button-spinner/button-spinner.component";
 
-import "./register.styles.scss";
-import { Link } from "react-router-dom";
+import { userRegistrationStart } from "../../redux/user/user.actions";
+import {
+  selectIsRegistering,
+  selectRegisterError,
+} from "../../redux/user/user.selectors";
 
-function RegisterComponent(props) {
+import "./register.styles.scss";
+
+function RegisterComponent({
+  isRegistering,
+  registerError,
+  userRegistrationStart,
+}) {
   const [registerCredentials, setRegisterCredentials] = useState({
     name: "",
     username: "",
@@ -53,9 +65,14 @@ function RegisterComponent(props) {
 
     if (password !== confirmPassword) {
       alert("passwords don't match");
+      toggleSpinners({
+        ...spinners,
+        registerSpinner: !spinners.registerSpinner,
+      });
       return;
     }
-    console.log(registerCredentials);
+
+    userRegistrationStart(username, password, name, email);
   }
 
   // Render
@@ -112,18 +129,12 @@ function RegisterComponent(props) {
           <ButtonComponent
             type="submit"
             value="Submit Register"
-            onClick={() =>
-              toggleSpinners({
-                ...spinners,
-                registerSpinner: !spinners.registerSpinner,
-              })
-            }
             $primaryColor="#007aff"
             $primaryTextColor="#ffffff"
             $secondaryColor="#ffffff"
             $secondaryTextColor="#007aff"
           >
-            {spinners.registerSpinner ? <ButtonSpinnerComponent /> : "Register"}
+            {isRegistering ? <ButtonSpinnerComponent /> : "Register"}
           </ButtonComponent>
           <ButtonComponent
             type="button"
@@ -154,4 +165,14 @@ function RegisterComponent(props) {
   );
 }
 
-export default RegisterComponent;
+const mapStateToProp = createStructuredSelector({
+  isRegistering: selectIsRegistering,
+  registerError: selectRegisterError,
+});
+
+const mapDispatchToProp = (dispatch) => ({
+  userRegistrationStart: (username, password, givenName, email) =>
+    dispatch(userRegistrationStart(username, password, givenName, email)),
+});
+
+export default connect(mapStateToProp, mapDispatchToProp)(RegisterComponent);

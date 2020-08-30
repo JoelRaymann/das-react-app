@@ -18,6 +18,8 @@ import {
   selectSessionToken,
 } from "../../redux/user/user.selectors";
 
+import BASEURL from "../../redux/network.env";
+
 import "./attendance-review.styles.scss";
 
 const OperationTypes = {
@@ -175,7 +177,7 @@ function AttendanceReviewTableComponent({
 
     try {
       const attendanceResponse = await axios.patch(
-        `http://13.233.160.133:8080/api/attendance/course/${course.courseCode}/${course.courseSlot}/${currentUser.username}/${date}/batch_update`,
+        `${BASEURL}/attendance/course/${course.courseCode}/${course.courseSlot}/${currentUser.username}/${date}/batch_update`,
         payload,
         {
           headers: {

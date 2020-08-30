@@ -69,18 +69,8 @@ function* registerNewUser(action) {
   try {
     const { payload } = action;
 
-    const registerHeader = {
-      header: {
-        "Content-Type": "application/json",
-      },
-    };
-
     // Launch an axios api call for registration
-    const registerResponse = yield axios.post(
-      `${BASEURL}/register`,
-      payload,
-      registerHeader
-    );
+    const registerResponse = yield axios.post(`${BASEURL}/register`, payload);
     console.log(registerResponse);
     // Handle a successful registration process
     yield put(userRegistrationSuccess());
