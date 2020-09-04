@@ -6,12 +6,16 @@ import { useHistory } from "react-router-dom";
 import FormInputComponent from "../form-input/form-input.component";
 import ButtonComponent from "../button/button.component";
 import ButtonSpinnerComponent from "../button-spinner/button-spinner.component";
+import AddCourseModalComponent from "./add-course-modal.component";
 
 import {
   selectCurrentUser,
   selectSessionToken,
 } from "../../redux/user/user.selectors";
-import { selectAddCourseInProgress } from "../../redux/course/course.selectors";
+import {
+  selectAddCourseInProgress,
+  selectAddCourseError,
+} from "../../redux/course/course.selectors";
 
 import { addCourseStart } from "../../redux/course/course.actions";
 
@@ -23,6 +27,7 @@ function AddCourseFormComponent({
   currentUser,
   sessionToken,
   addCourseInProgress,
+  addCourseError,
   addCourseStart,
 }) {
   const history = useHistory();
@@ -34,6 +39,10 @@ function AddCourseFormComponent({
     courseSlot: "",
   });
   const { courseName, courseCode, courseSlot } = courseDetails;
+
+  const [showModal, setShowModal] = useState(false);
+  const handleModalClose = () => setShowModal(false);
+  const handleModalShow = () => setShowModal(true);
 
   /**
    * Function to handle the changes happening in the form input.
@@ -64,12 +73,7 @@ function AddCourseFormComponent({
 
     const newCourse = new CourseClass(courseName, courseCode, courseSlot);
     addCourseStart(newCourse, currentUser, sessionToken);
-
-    setCourseDetails({
-      courseName: "",
-      courseCode: "",
-      courseSlot: "",
-    });
+    handleModalShow();
   }
 
   return (
@@ -135,6 +139,52 @@ function AddCourseFormComponent({
           </ButtonComponent>
         </div>
       </form>
+
+      {/* Handling Status message with Course Modal Component */}
+      <AddCourseModalComponent
+        show={showModal}
+        onHide={handleModalClose}
+        titleMessage={
+          addCourseInProgress
+            ? "Processing Request"
+            : `${addCourseError ? "Error" : "Success"}`
+        }
+        bodyMessage={
+          addCourseInProgress
+            ? "Course Addition in Progress. Please wait."
+            : `The course ${courseName} with course code: ${courseCode}
+         is ${
+           addCourseError ? "NOT" : "successfully"
+         } added to the slot: ${courseSlot} ${
+                addCourseError
+                  ? `due to the following error: ${addCourseError}`
+                  : ""
+              }`
+        }
+      >
+        <ButtonComponent
+          disabled={addCourseInProgress}
+          onClick={() => {
+            setCourseDetails({
+              courseName: "",
+              courseCode: "",
+              courseSlot: "",
+            });
+            handleModalClose();
+          }}
+        >
+          {addCourseError ? "Try Again" : "Add More"}
+        </ButtonComponent>
+        <ButtonComponent
+          onClick={() => {
+            history.push("/course-page");
+            handleModalClose();
+          }}
+          disabled={addCourseInProgress}
+        >
+          Go Back
+        </ButtonComponent>
+      </AddCourseModalComponent>
     </div>
   );
 }
@@ -143,6 +193,7 @@ const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
   sessionToken: selectSessionToken,
   addCourseInProgress: selectAddCourseInProgress,
+  addCourseError: selectAddCourseError,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -68,7 +68,7 @@ function AttendanceFormModalComponent({
   return (
     <div className="attendance-form-modal-container">
       <Modal show={show} onHide={onHide} backdrop="static" size="lg" centered>
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title>
             Attention! Please Read the instructions carefully
           </Modal.Title>

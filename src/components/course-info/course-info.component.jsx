@@ -98,10 +98,10 @@ function CourseInfoComponent({
                 `/course-page/${course.courseCode}/${course.courseSlot}/edit-attendance`
               )
             }
-            $primaryColor="rgba(192, 57, 43, 1.0)"
+            $primaryColor="rgba(243, 156, 18, 1.0)"
             $primaryTextColor="#ffffff"
             $secondaryColor="#ffffff"
-            $secondaryTextColor="rgba(192, 57, 43, 1.0)"
+            $secondaryTextColor="rgba(243, 156, 18, 1.0)"
           >
             Edit Attendance
           </ButtonComponent>
@@ -121,11 +121,9 @@ function CourseInfoComponent({
           onHide={() => toggleDeleteModal(false)}
           course={course}
         />
-        ;
       </div>
     );
   }
-  // return <div>{course}</div>;
 }
 
 const mapStateToProps = createStructuredSelector({

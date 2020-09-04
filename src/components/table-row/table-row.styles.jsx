@@ -2,8 +2,8 @@ import styled, { css } from "styled-components";
 
 export const StyledTableRowComponent = styled.li`
   border-radius: 4px;
-  margin: 1rem 1rem;
-  padding: 1.5rem 3rem;
+  margin: 0.7rem 1rem;
+  padding: 1rem 3rem;
   display: flex;
   font-weight: 500;
   justify-content: space-between;

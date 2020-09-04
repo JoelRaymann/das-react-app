@@ -22,12 +22,16 @@ const setButtonColor = (
   return css`
     background-color: ${$primaryColor};
     color: ${$primaryTextColor};
-    border: ${inverted ? `1px solid ${$primaryTextColor}` : `none`};
+    border: ${inverted
+      ? `1.75px solid ${$primaryTextColor}`
+      : `1.75px solid transparent`};
 
     &:hover {
       background-color: ${$secondaryColor};
       color: ${$secondaryTextColor};
-      border: ${inverted ? `none` : `1px solid ${$primaryColor}`};
+      border: ${inverted
+        ? `1.75px solid transparent`
+        : `1.75px solid ${$primaryColor}`};
     }
 
     &:disabled {
@@ -37,7 +41,9 @@ const setButtonColor = (
       &:hover {
         background-color: ${$primaryColor};
         color: ${$primaryTextColor};
-        border: ${inverted ? `1px solid ${$primaryTextColor}` : `none`};
+        border: ${inverted
+          ? `1.75px solid ${$primaryTextColor}`
+          : `1.75px solid transparent`};
       }
     }
   `;
@@ -81,7 +87,7 @@ const ButtonColorStyles = (props) => {
 };
 
 export const ButtonStyles = styled.button`
-  outline: none;
+  outline: none !important;
   min-width: 200px;
   max-width: 300px;
   height: 50px;
