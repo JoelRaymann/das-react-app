@@ -29,14 +29,13 @@ function MenuNavbarComponent({ currentUser, brand }) {
         onClick={() => history.push("/course-page/add-course")}
       >
         <NavItemComponent
+        id="addCourse"
           to="#"
-          iconSrc={
-            process.env.PUBLIC_URL +
-            "/assets/icons/nav-option-icons/add_course_icon.svg"
-          }
-          $secondaryIconColor="#00ff7a"
-          $iconAnimation="enlarge"
           $disableIconPopover
+          $primaryBgColor = "#0a84ff"
+          $secondaryBgColor = "#ffffff"
+          $primaryLinkColor = "#ffffff"
+          $secondaryLinkColor = "#0a84ff"
         >
           Add Courses
         </NavItemComponent>
@@ -47,13 +46,10 @@ function MenuNavbarComponent({ currentUser, brand }) {
       >
         <NavItemComponent
           to="#"
-          iconSrc={
-            process.env.PUBLIC_URL +
-            "/assets/icons/nav-option-icons/person_icon.svg"
-          }
-          $secondaryIconColor="#007aff"
-          $iconAnimation="enlarge"
           $disableIconPopover
+          id="Menu"
+          $primaryBgColor = "#ffffff"
+          $secondaryLinkColor = "#0a84ff"
         >
           Menu
         </NavItemComponent>

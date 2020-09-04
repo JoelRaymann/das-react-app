@@ -2,14 +2,16 @@ import styled, { css } from "styled-components";
 
 export const StyledTableRowComponent = styled.li`
   border-radius: 4px;
-  margin: 1rem 1rem;
-  padding: 1.5rem 3rem;
+  border-collapse : collapse;
+  margin: 3px 3px;
+  padding: 15px 15px;
   display: flex;
   font-weight: 500;
-  justify-content: space-between;
+  border-bottom : 1px solid #dddddd;
+  // justify-content: space-between;
   color: ${(props) => props.$primaryTextColor || "#000000"};
   background-color: ${(props) => props.$primaryBgColor || "#ffffff"};
-  box-shadow: 0 0 1rem 0 rgba(70, 70, 70, 0.8);
+  // box-shadow: 0 0 1rem 0 rgba(70, 70, 70, 0.8);
   ${(props) =>
     props.$header
       ? css`
@@ -35,22 +37,25 @@ export const StyledTableRowComponent = styled.li`
   }
 
   &:hover {
-    color: ${(props) => props.$secondaryTextColor || "#ffffff"};
+    // color: ${(props) => props.$secondaryTextColor || "#ffffff"};
+    color : #fff;
     background-color: ${(props) => props.$secondaryBgColor || "#23232e"};
   }
 
   @media all and (max-width: 767px) {
     display: ${(props) => (props.$header ? "none" : "block")};
-    min-width: 350px;
+    min-width: 10px;
+    text-align: justify;
 
     div {
-      display: flex;
+      display: flexbox;
       padding: 0.6rem 0;
+      letter-spacing: 1px;
 
       &:before {
         content: attr(data-label);
         color: #6c7a89;
-        padding-right: 10px;
+        padding-left: 5px;
         flex-basis: 50%;
         text-align: right;
       }

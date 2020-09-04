@@ -7,16 +7,17 @@ import "./student-review-table.styles.scss";
 function StudentReviewTableComponent({ studentList }) {
   function handleHoverColor(attendancePercent) {
     if (attendancePercent < 75) {
-      return "rgba(231, 76, 60, 0.3)";
+      return "rgba(231, 76, 60, 1)";
     } else if (attendancePercent > 75) {
-      return "rgba(39, 174, 96, 0.3)";
+      return "rgba(0, 0, 0, 1)";
     } else {
-      return "rgba(243, 156, 18, 0.3)";
+      return "rgba(243, 156, 18, 1)";
     }
   }
 
   return (
-    <ul className="student-review-table-container">
+
+    <table className="student-review-table-container">
       <TableRowComponent
         rowData={{
           "SNo:": "SNo",
@@ -41,15 +42,16 @@ function StudentReviewTableComponent({ studentList }) {
               "Reg. No:": `${student.studentId}`,
               "Attendance Percentage": `${student.attendancePercent}%`,
             }}
-            $primaryTextColor="#000000"
+            $primaryTextColor={`${handleHoverColor(student.attendancePercent)}`}
             $secondaryTextColor="#000000"
-            $primaryBgColor={`${handleHoverColor(student.attendancePercent)}`}
-            $secondaryBgColor={`${handleHoverColor(student.attendancePercent)}`}
+            // $primaryBgColor={`${handleHoverColor(student.attendancePercent)}`}
+            // $secondaryBgColor={`${handleHoverColor(student.attendancePercent)}`}
             $columns={4}
           />
         );
       })}
-    </ul>
+    </table>
+
   );
 }
 

@@ -2,7 +2,7 @@
   top: 0;
   width: 100vw;
   height: 4rem;
-  background-color: #23232e;
+  background-color: #ffffff;
   padding: 0;
   margin: 0;
   display: flex;
@@ -10,7 +10,7 @@
   justify-content: flex-end;
 
   .menu-navbar-brand {
-    color: #ffffff;
+    color: #000000;
     font-size: 2rem;
     margin: 0.5rem 1rem;
     margin-right: auto;
@@ -26,4 +26,84 @@
       margin: 0 1rem 0 0;
     }
   }
+}
+
+#addCourse {
+  border-radius: 5px;
+  justify-items: center;
+  padding: 10px 10px;
+  
+} 
+
+#Menu {
+  border-radius: 5px;
+  justify-items: center;
+  padding: 10px 30px;
+  letter-spacing: 0;
+  background-color: #ffffff;
+
+}
+
+#Menu:hover,
+#Menu:active {
+letter-spacing: 3px;
+}
+
+#Menu:after,
+#Menu:before {
+backface-visibility: hidden;
+border: 1px solid rgba(#fff, 0);
+bottom: 0px;
+content: " ";
+display: block;
+margin: 0 auto;
+position: absolute;
+transition: all 280ms ease-in-out;
+width: 0;
+}
+
+#Menu:hover:after,
+#Menu:hover:before {
+backface-visibility: hidden;
+// border-color: #fff;
+// transition: width 350ms ease-in-out;
+width: 20%;
+}
+
+#Menu:hover:before {
+bottom: auto;
+top: 0;
+width: 20%;
+}
+
+#addCourse:hover,
+#addCourse:active {
+letter-spacing: 3px;
+}
+
+#addCourse:after,
+#addCourse:before {
+backface-visibility: hidden;
+border: 1px solid rgba(#fff, 0);
+bottom: 0px;
+content: " ";
+display: block;
+margin: 0 auto;
+position: absolute;
+transition: all 280ms ease-in-out;
+width: 0;
+}
+
+#addCourse:hover:after,
+#addCourse:hover:before {
+backface-visibility: hidden;
+// border-color: #fff;
+// transition: width 350ms ease-in-out;
+width: 20%;
+}
+
+#addCourse:hover:before {
+bottom: auto;
+top: 0;
+width: 20%;
 }

@@ -2,7 +2,7 @@
   top: 0;
   width: 100vw;
   height: 4rem;
-  background-color: #23232e;
+  background-color: #fff;
   padding: 0;
   margin: 0;
   display: flex;
@@ -10,7 +10,7 @@
   justify-content: flex-end;
 
   .login-navbar-brand {
-    color: #ffffff;
+    color: #000000;
     font-size: 2rem;
     margin: 0.5rem 1rem;
     margin-right: auto;
@@ -27,3 +27,68 @@
     }
   }
 }
+
+#Login:hover,
+#Login:active {
+letter-spacing: 3px;
+}
+
+#Login:after,
+#Login:before {
+backface-visibility: hidden;
+border: 1px solid rgba(#fff, 0);
+bottom: 0px;
+content: " ";
+display: block;
+margin: 0 auto;
+position: absolute;
+transition: all 280ms ease-in-out;
+width: 0;
+}
+
+#Login:hover:after,
+#Login:hover:before {
+backface-visibility: hidden;
+// border-color: #fff;
+// transition: width 350ms ease-in-out;
+width: 20%;
+}
+
+#Login:hover:before {
+bottom: auto;
+top: 0;
+width: 20%;
+}
+
+#Register:hover,
+#Register:active {
+letter-spacing: 3px;
+}
+
+#Register:after,
+#Register:before {
+backface-visibility: hidden;
+border: 1px solid rgba(#fff, 0);
+bottom: 0px;
+content: " ";
+display: block;
+margin: 0 auto;
+position: absolute;
+transition: all 280ms ease-in-out;
+width: 0;
+}
+
+#Register:hover:after,
+#Register:hover:before {
+backface-visibility: hidden;
+// border-color: #fff;
+// transition: width 350ms ease-in-out;
+width: 20%;
+}
+
+#Register:hover:before {
+bottom: auto;
+top: 0;
+width: 20%;
+}
+

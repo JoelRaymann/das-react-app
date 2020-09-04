@@ -71,7 +71,7 @@
           font-size: 14px;
           width: auto;
           padding: 7.5px 7.5px !important;
-          border: 1px solid #007aff;
+          border: 1px solid #0a84ff;
           border-radius: 4px;
           background-color: #ffffff;
           color: #333333;
@@ -79,7 +79,7 @@
           padding: 5px;
 
           &:hover {
-            background: #007aff;
+            background: #0a84ff;
             box-shadow: 0 0.5rem 0.5rem 0.1rem rgba(70, 70, 70, 0.8);
             border-color: transparent;
             color: #ffffff;
@@ -92,7 +92,7 @@
   &:hover {
     .course-card-header {
       transform: translateY(0);
-      background-color: #007aff;
+      background-color: #0a84ff;
     }
 
     .course-card-header-content {
