@@ -17,6 +17,7 @@ function LoginNavbarComponent() {
             "/assets/icons/login-nav-icons/login_icon.svg"
           }
           $primaryBgColor = "#ffffff"
+          $primaryIconColor="#0a84ff"
           $secondaryIconColor="#ffffff"
           $iconAnimation="enlarge"
           $disableIconPopover
@@ -34,6 +35,7 @@ function LoginNavbarComponent() {
           }
           $secondaryIconColor="#ffffff"
           $primaryBgColor = "#ffffff"
+          $primaryIconColor="#0a84ff"
           $iconAnimation="enlarge"
           $disableIconPopover
         >
