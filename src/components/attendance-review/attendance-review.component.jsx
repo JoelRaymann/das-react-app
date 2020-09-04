@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { useHistory } from "react-router-dom";
+import { ExportToCsv } from "export-to-csv";
 import axios from "axios";
 
 import TableRowComponent from "../table-row/table-row.component";
 import ButtonComponent from "../button/button.component";
 import LoaderComponent from "../loader/loader.component";
+import ReviewAlertModalComponent from "./attendance-review-modal.component";
 
 import { getStudentAttendanceListStart } from "../../redux/student/student.actions";
 import {
@@ -49,6 +51,10 @@ function AttendanceReviewTableComponent({
     toggledAbsentList: [],
   });
 
+  const [showAlert, setShowAlert] = useState(false);
+  const handleAlertClose = () => setShowAlert(false);
+  const handleAlertShow = () => setShowAlert(true);
+
   const {
     presentList,
     absentList,
@@ -70,6 +76,54 @@ function AttendanceReviewTableComponent({
       toggledAbsentList: [],
     }));
   }, [studentAttendanceList]);
+
+  /**
+   * Function to handle the export operation of data into CSV
+   */
+  function handleExportCSV() {
+    let csvData = [];
+    presentList.forEach((student) => {
+      csvData.push([
+        `${student.studentId.toUpperCase()}`,
+        `${student.studentName}`,
+        "Present",
+      ]);
+    });
+    absentList.forEach((student) => {
+      csvData.push([
+        `${student.studentId.toUpperCase()}`,
+        `${student.studentName}`,
+        "Absent",
+      ]);
+    });
+
+    csvData.sort();
+
+    // Prep the data
+    const csvExportObject = [];
+    csvData.forEach((data) => {
+      csvExportObject.push({
+        regNo: data[0],
+        name: data[1],
+        attendanceStatus: data[2],
+      });
+    });
+
+    // CSV Export options
+    const csvExportOptions = {
+      fieldSeparator: ",",
+      filename: `${course.courseCode}_${course.courseSlot}_${date}`,
+      showLabels: true,
+      useTextFile: false,
+      useBom: true,
+      useKeysAsHeaders: false,
+      headers: ["Reg No.", "Name", "Attendance Status"],
+    };
+
+    const csvExporter = new ExportToCsv(csvExportOptions);
+
+    csvExporter.generateCsv(csvExportObject);
+  }
 
   /**
    * Function to handle the entire logic for
@@ -367,44 +421,61 @@ function AttendanceReviewTableComponent({
           </div>
         </div>
         <div className="confirm-button-container">
-          <ButtonComponent
-            type="button"
-            onClick={handleResetClick}
-            $primaryColor="rgba(192, 57, 43, 1.0)"
-            $primaryTextColor="#ffffff"
-            $secondaryColor="#ffffff"
-            $secondaryTextColor="rgba(192, 57, 43,1.0)"
-          >
-            Reset Changes
-          </ButtonComponent>
-          <ButtonComponent
-            type="button"
-            onClick={handleCommitClick}
-            $primaryColor="rgba(39, 174, 96, 1.0)"
-            $primaryTextColor="#ffffff"
-            $secondaryColor="#ffffff"
-            $secondaryTextColor="rgba(39, 174, 96, 1.0)"
-          >
-            Commit Changes
-          </ButtonComponent>
-          <ButtonComponent
-            type="button"
-            onClick={() => {
-              try {
-                handleCommitClick();
-                history.push("/course-page");
-              } catch (error) {
-                alert(`[ERROR]: Error: ${error}`);
+          <div className="confirm-button-placement">
+            <ButtonComponent
+              type="button"
+              onClick={handleResetClick}
+              $primaryColor="rgba(192, 57, 43, 1.0)"
+              $primaryTextColor="#ffffff"
+              $secondaryColor="#ffffff"
+              $secondaryTextColor="rgba(192, 57, 43,1.0)"
+            >
+              Reset Changes
+            </ButtonComponent>
+            <ButtonComponent
+              type="button"
+              onClick={() => {
+                if (presentList.length + absentList.length > 0)
+                  handleExportCSV();
+                else alert(`[ERROR]: No List Found. Please go back`);
+              }}
+              disabled={
+                toggledPresentList.length + toggledAbsentList.length > 0
               }
-            }}
-            $primaryColor="rgba(39, 174, 96, 1.0)"
-            $primaryTextColor="#ffffff"
-            $secondaryColor="#ffffff"
-            $secondaryTextColor="rgba(39, 174, 96, 1.0)"
-          >
-            Commit and Go Back
-          </ButtonComponent>
+              $primaryColor="rgba(243, 156, 18, 1.0)"
+              $primaryTextColor="#ffffff"
+              $secondaryColor="#ffffff"
+              $secondaryTextColor="rgba(243, 156, 18, 1.0)"
+            >
+              Export as CSV
+            </ButtonComponent>
+            <ButtonComponent
+              type="button"
+              onClick={handleCommitClick}
+              $primaryColor="rgba(39, 174, 96, 1.0)"
+              $primaryTextColor="#ffffff"
+              $secondaryColor="#ffffff"
+              $secondaryTextColor="rgba(39, 174, 96, 1.0)"
+            >
+              Commit Changes
+            </ButtonComponent>
+            <ButtonComponent
+              type="button"
+              onClick={() => {
+                if (toggledPresentList.length + toggledAbsentList.length > 0)
+                  handleAlertShow();
+                else history.push("/course-page");
+              }}
+              // $primaryColor="rgba(39, 174, 96, 1.0)"
+              // $primaryTextColor="#ffffff"
+              // $secondaryColor="#ffffff"
+              // $secondaryTextColor="rgba(39, 174, 96, 1.0)"
+            >
+              Go Back
+            </ButtonComponent>
+          </div>
         </div>
+        <ReviewAlertModalComponent show={showAlert} onHide={handleAlertClose} />
       </div>
     );
   }
