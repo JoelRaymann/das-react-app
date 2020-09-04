@@ -32,7 +32,7 @@ function LoginNavbarComponent() {
             process.env.PUBLIC_URL +
             "/assets/icons/login-nav-icons/register_icon.svg"
           }
-          $secondaryIconColor="#00ff7a"
+          $secondaryIconColor="#ffffff"
           $primaryBgColor = "#ffffff"
           $iconAnimation="enlarge"
           $disableIconPopover

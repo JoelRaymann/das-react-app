@@ -64,26 +64,26 @@ function CourseInfoComponent({
                 `/course-page/${course.courseCode}/${course.courseSlot}/add-students`
               )
             }
-            $primaryColor="#000000"
+            $primaryColor="rgba(10, 132, 255, 1.0)"
             $primaryTextColor="#ffffff"
             $secondaryColor="#ffffff"
-            $secondaryTextColor="#ffffff"
+            $secondaryTextColor="rgba(10, 132, 255, 1.0)"
           >
             Add Students
           </ButtonComponent>
           <ButtonComponent
             type="button"
-            id = "btn-2"
+            id = "TakeAttendance"
             onClick={() => {
               console.log("redirecting");
               history.push(
                 `/course-page/${course.courseCode}/${course.courseSlot}/attendance-page`
               );
             }}
-            $primaryColor="#000000"
+            $primaryColor="rgba(255, 255, 255, 1.0)"
             $primaryTextColor="#ffffff"
             $secondaryColor="#ffffff"
-            $secondaryTextColor="#ffffff"
+            $secondaryTextColor="rgba(255, 255, 255, 1.0)"
           >
             + Attendance
           </ButtonComponent>
@@ -95,12 +95,12 @@ function CourseInfoComponent({
                 `/course-page/${course.courseCode}/${course.courseSlot}/edit-attendance`
               )
             }
-            $primaryColor="#000000"
+            $primaryColor="rgba(10, 132, 255, 1.0)"
             $primaryTextColor="#ffffff"
             $secondaryColor="#ffffff"
-            $secondaryTextColor="#ffffff"
+            $secondaryTextColor="rgba(10, 132, 255, 1.0)"
           >
-            Edit Attendance
+            Edit
           </ButtonComponent>
           <ButtonComponent
             type="button"

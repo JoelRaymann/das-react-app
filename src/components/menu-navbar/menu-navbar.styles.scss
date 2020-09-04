@@ -29,7 +29,7 @@
 }
 
 #addCourse {
-  border-radius: 5px;
+  // border-radius: 5px;
   justify-items: center;
   padding: 10px 10px;
   
@@ -46,7 +46,7 @@
 
 #Menu:hover,
 #Menu:active {
-letter-spacing: 3px;
+letter-spacing: 1px;
 }
 
 #Menu:after,
@@ -78,7 +78,7 @@ width: 20%;
 
 #addCourse:hover,
 #addCourse:active {
-letter-spacing: 3px;
+letter-spacing: 0px;
 }
 
 #addCourse:after,

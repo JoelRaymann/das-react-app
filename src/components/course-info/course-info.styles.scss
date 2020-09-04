@@ -130,6 +130,43 @@ width: 20%;
   //  transform: translateY(100px);
 }
 
+#TakeAttendance {
+  letter-spacing: 0;
+  background-color: #0a84ff;
+}
+
+#TakeAttendance:hover,
+#TakeAttendance:active {
+letter-spacing: 1px;
+}
+
+#TakeAttendance:after,
+#TakeAttendance:before {
+backface-visibility: hidden;
+border: 1px solid rgba(#fff, 0);
+bottom: 0px;
+content: " ";
+display: block;
+margin: 0 auto;
+position: absolute;
+transition: all 280ms ease-in-out;
+width: 0;
+}
+
+#TakeAttendance:hover:after,
+#TakeAttendance:hover:before {
+backface-visibility: hidden;
+border-color: #fff;
+transition: width 350ms ease-in-out;
+width: 20%;
+}
+
+#TakeAttendance:hover:before {
+bottom: auto;
+top: 0;
+width: 20%;
+}
+
 #table {
   position: relative;
   margin:3em auto auto ;
