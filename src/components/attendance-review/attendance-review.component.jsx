@@ -282,7 +282,6 @@ function AttendanceReviewTableComponent({
         <div className="student-attendance-review-table">
           <div className="absent-student-table-container">
             <h1 className="table-header">Absentees</h1>
-            {/* <table className="student-attendance-review-table-container"> */}
             <div className="absent-student-table">
               <TableRowComponent
                 rowData={{
@@ -353,7 +352,6 @@ function AttendanceReviewTableComponent({
                 </div>
               ))}
             </div>
-            {/* </table> */}
           </div>
           <div className="present-student-table-container">
             <h1 className="table-header">Presentees</h1>
