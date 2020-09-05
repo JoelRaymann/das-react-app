@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 import AttendanceReviewTableComponent from "../../components/attendance-review/attendance-review.component";
-// import MenuNavbarComponent from "../../components/menu-navbar/menu-navbar.component";
 import { getStudentAttendanceListStart } from "../../redux/student/student.actions";
 import { selectCourseFromCourseList } from "../../redux/course/course.selectors";
 import {
@@ -31,9 +30,6 @@ function AttendanceReviewPage({
 
   return (
     <div className="attendance-review-page-container">
-      {/* <div className="course-info-menu-navbar">
-        <MenuNavbarComponent />
-      </div> */}
       <AttendanceReviewTableComponent course={course} date={date} />
     </div>
   );
