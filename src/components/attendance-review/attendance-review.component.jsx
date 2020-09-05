@@ -288,9 +288,9 @@ function AttendanceReviewTableComponent({
                   "Given Name:": "Given Name",
                   "Reg. No:": "Reg. No",
                 }}
-                $primaryBgColor="rgba(189, 195, 199, 1.0)"
+                $primaryBgColor="#23232e"
                 $secondaryBgColor="rgba(189, 195, 199, 1.0)"
-                $primaryTextColor="#000000"
+                $primaryTextColor="#ffffff"
                 $secondaryTextColor="#000000"
                 $columns={3}
                 $header
@@ -323,6 +323,7 @@ function AttendanceReviewTableComponent({
                   />
                 </div>
               ))}
+
               {state.absentList.map((absentee, index) => (
                 <div
                   className="table-row-element"
@@ -360,9 +361,9 @@ function AttendanceReviewTableComponent({
                   "Given Name:": "Given Name",
                   "Reg. No:": "Reg. No",
                 }}
-                $primaryBgColor="rgba(189, 195, 199, 1.0)"
+                $primaryBgColor="#23232e"
                 $secondaryBgColor="rgba(189, 195, 199, 1.0)"
-                $primaryTextColor="#000000"
+                $primaryTextColor="#ffffff"
                 $secondaryTextColor="#000000"
                 $columns={3}
                 $header
@@ -408,7 +409,7 @@ function AttendanceReviewTableComponent({
                       "Given Name:": `${present.studentName}`,
                       "Reg. No:": `${present.studentId}`,
                     }}
-                    $primaryBgColor="rgba(39, 174, 96, 0.3)"
+                    $primaryBgColor="rgba(39, 174, 96, 0.5)"
                     $secondaryBgColor="rgba(39, 174, 96, 0.3)"
                     $primaryTextColor="#000000"
                     $secondaryTextColor="#000000"
@@ -424,16 +425,18 @@ function AttendanceReviewTableComponent({
           <div className="confirm-button-placement">
             <ButtonComponent
               type="button"
+              id="btn-1"
               onClick={handleResetClick}
-              $primaryColor="rgba(192, 57, 43, 1.0)"
+              $primaryColor="#ffd60a"
               $primaryTextColor="#ffffff"
               $secondaryColor="#ffffff"
-              $secondaryTextColor="rgba(192, 57, 43,1.0)"
+              $secondaryTextColor="#ffd60a"
             >
               Reset Changes
             </ButtonComponent>
             <ButtonComponent
               type="button"
+              id="btn-1"
               onClick={() => {
                 if (presentList.length + absentList.length > 0)
                   handleExportCSV();
@@ -442,34 +445,36 @@ function AttendanceReviewTableComponent({
               disabled={
                 toggledPresentList.length + toggledAbsentList.length > 0
               }
-              $primaryColor="rgba(243, 156, 18, 1.0)"
+              $primaryColor="#8fd158"
               $primaryTextColor="#ffffff"
               $secondaryColor="#ffffff"
-              $secondaryTextColor="rgba(243, 156, 18, 1.0)"
+              $secondaryTextColor="#8fd158"
             >
               Export as CSV
             </ButtonComponent>
             <ButtonComponent
               type="button"
+              id="commit-changes"
               onClick={handleCommitClick}
-              $primaryColor="rgba(39, 174, 96, 1.0)"
+              $primaryColor="#23232e"
               $primaryTextColor="#ffffff"
               $secondaryColor="#ffffff"
-              $secondaryTextColor="rgba(39, 174, 96, 1.0)"
+              $secondaryTextColor="#23232e"
             >
               Commit Changes
             </ButtonComponent>
             <ButtonComponent
               type="button"
+              id="btn-1"
               onClick={() => {
                 if (toggledPresentList.length + toggledAbsentList.length > 0)
                   handleAlertShow();
                 else history.push("/course-page");
               }}
-              // $primaryColor="rgba(39, 174, 96, 1.0)"
-              // $primaryTextColor="#ffffff"
-              // $secondaryColor="#ffffff"
-              // $secondaryTextColor="rgba(39, 174, 96, 1.0)"
+              $primaryColor="rgba(192, 57, 43, 1.0)"
+              $primaryTextColor="#ffffff"
+              $secondaryColor="#ffffff"
+              $secondaryTextColor="rgba(192, 57, 43, 1.0)"
             >
               Go Back
             </ButtonComponent>

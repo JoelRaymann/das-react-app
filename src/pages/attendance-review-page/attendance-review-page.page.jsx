@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 import AttendanceReviewTableComponent from "../../components/attendance-review/attendance-review.component";
-
 import { getStudentAttendanceListStart } from "../../redux/student/student.actions";
 import { selectCourseFromCourseList } from "../../redux/course/course.selectors";
 import {

@@ -46,7 +46,7 @@
     &:hover {
       // border-color: rgba(221, 44, 0, 1);
       background-color: transparent;
-      box-shadow: 0 0.5rem 0.5rem 0.1rem rgba(70, 70, 70, 0.8);
+      // box-shadow: 0 0.5rem 0.5rem 0.1rem rgba(70, 70, 70, 0.8);
       border-color: transparent;
 
       .delete-course-icon {
@@ -62,6 +62,13 @@
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
+  }
+
+  .table-container {
+    display: flex;
+    align-content: space-between;
+    justify-content: center;
+    align-items: center;
   }
 }
 
@@ -158,15 +165,4 @@
   bottom: auto;
   top: 0;
   width: 20%;
-}
-
-#table {
-  position: relative;
-  margin: 3em auto auto;
-  width: 100%;
-  padding: 0px auto;
-  min-width: 150px;
-  padding-right: 10px;
-  flex-basis: 100%;
-  justify-self: center;
 }

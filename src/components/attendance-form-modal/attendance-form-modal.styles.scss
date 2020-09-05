@@ -1,0 +1,36 @@
+#start-session {
+  letter-spacing: 0;
+  background-color: #23232e;
+}
+
+#start-session:hover,
+#start-session:active {
+  letter-spacing: 0px;
+}
+
+#start-session:after,
+#start-session:before {
+  backface-visibility: hidden;
+  border: 1px solid rgba(#fff, 0);
+  bottom: 0px;
+  content: " ";
+  display: block;
+  margin: 0 auto;
+  position: absolute;
+  transition: all 280ms ease-in-out;
+  width: 0;
+}
+
+#start-session:hover:after,
+#start-session:hover:before {
+  backface-visibility: hidden;
+  border-color: #ffffff;
+  transition: width 350ms ease-in-out;
+  width: 20%;
+}
+
+#start-session:hover:before {
+  bottom: auto;
+  top: 0;
+  width: 20%;
+}

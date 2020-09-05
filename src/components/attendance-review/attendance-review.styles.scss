@@ -10,38 +10,39 @@
     justify-content: center;
 
     .absent-student-table-container {
-      display: flex;
+      display: flexbox;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
       min-width: 500px;
       max-width: 600px;
       height: 75vh;
-      border: 1px solid transparent;
+      // border: 1px solid transparent;
       border-radius: 8px;
-      box-shadow: 0 0 1rem 0 rgba(70, 70, 70, 0.8);
-      margin: 10px;
+      // box-shadow: 0 0 1rem 0 rgba(70, 70, 70, 0.8);
+      margin: 10px 30px;
 
       .table-header {
         text-transform: uppercase;
         font-size: 22px;
         font-weight: 700;
         letter-spacing: 0.1ch;
-        margin: 10px 0;
+        margin: 20px 0;
         text-align: center;
-        color: rgba(53, 53, 53, 0.8);
+        color: #333333;
       }
 
       .absent-student-table {
         border-radius: 4px;
-        border: 1.5px solid #bdbdbd;
+        border-collapse: collapse;
+        // border: 1.5px solid #bdbdbd;
         min-width: 480px;
         max-width: 580px;
         height: 80vh;
         overflow: scroll;
         overflow-x: auto;
         overflow-y: auto;
-        margin-bottom: 10px;
+        // margin-bottom: 10px solid #000000;
 
         &::-webkit-scrollbar {
           width: 0.35rem;
@@ -60,31 +61,31 @@
     }
 
     .present-student-table-container {
-      display: flex;
+      display: flexbox;
       flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
+      align-items: left;
+      align-content: center;
       min-width: 500px;
       max-width: 600px;
       height: 75vh;
-      border: 1px solid transparent;
+      // border: 1px solid transparent;
       border-radius: 8px;
-      box-shadow: 0 0 1rem 0 rgba(70, 70, 70, 0.8);
-      margin: 10px;
+      // box-shadow: 0 0 1rem 0 rgba(70, 70, 70, 0.8);
+      margin: 10px 30px;
 
       .table-header {
         text-transform: uppercase;
         font-size: 22px;
         font-weight: 700;
         letter-spacing: 0.1ch;
-        margin: 10px 0;
+        margin: 20px 0;
         text-align: center;
-        color: rgba(53, 53, 53, 0.8);
+        color: #333333;
       }
 
       .present-student-table {
         border-radius: 4px;
-        border: 1.5px solid #bdbdbd;
+        // border: 1.5px solid #bdbdbd;
         min-width: 480px;
         max-width: 580px;
         height: 80vh;
@@ -152,4 +153,78 @@
       }
     }
   }
+}
+
+#btn-1 {
+  letter-spacing: 0;
+  background-color: #23232e;
+}
+
+#btn-1:hover,
+#btn-1:active {
+  letter-spacing: 0px;
+}
+
+#btn-1:after,
+#btn-1:before {
+  backface-visibility: hidden;
+  border: 1px solid rgba(#fff, 0);
+  bottom: 0px;
+  content: " ";
+  display: block;
+  margin: 0 auto;
+  position: absolute;
+  transition: all 280ms ease-in-out;
+  width: 0;
+}
+
+#btn-1:hover:after,
+#btn-1:hover:before {
+  backface-visibility: hidden;
+  border-color: #ffffff;
+  transition: width 350ms ease-in-out;
+  width: 20%;
+}
+
+#btn-1:hover:before {
+  bottom: auto;
+  top: 0;
+  width: 20%;
+}
+
+#commit-changes {
+  letter-spacing: 0;
+  background-color: #0a84ff;
+}
+
+#commit-changes:hover,
+#commit-changes:active {
+  letter-spacing: 0px;
+}
+
+#commit-changes:after,
+#commit-changes:before {
+  backface-visibility: hidden;
+  border: 1px solid #ffffff;
+  bottom: 0px;
+  content: " ";
+  display: block;
+  margin: 0 auto;
+  position: absolute;
+  transition: all 280ms ease-in-out;
+  width: 0;
+}
+
+#commit-changes:hover:after,
+#commit-changes:hover:before {
+  backface-visibility: hidden;
+  border-color: #ffffff;
+  transition: width 350ms ease-in-out;
+  width: 20%;
+}
+
+#commit-changes:hover:before {
+  bottom: auto;
+  top: 0;
+  width: 20%;
 }
