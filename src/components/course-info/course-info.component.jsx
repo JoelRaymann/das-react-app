@@ -42,88 +42,106 @@ function CourseInfoComponent({
   } else {
     return (
       <div className="course-info-container">
-        <div className="course-info-header-container">
-          <div className="course-info-header">
-            {`${course.courseCode} - ${course.courseName}`}
+        <div className="row">
+          <div className="course-infocard-container">
+            <div className="col-sm-12 col-md-7">
+              <div className="course-info-header-container">
+                <div className="course-info-header">
+                  {`${course.courseCode}`}
+
+                  <div className="course-name">{`${course.courseName}`}</div>
+                </div>
+              </div>
+              <div className="course-info-button-placement">
+                <ButtonComponent
+                  type="button"
+                  id="btn-2"
+                  onClick={() =>
+                    history.push(
+                      `/course-page/${course.courseCode}/${course.courseSlot}/add-students`
+                    )
+                  }
+                  $primaryColor="rgba(10, 132, 255, 1.0)"
+                  $primaryTextColor="#ffffff"
+                  $secondaryColor="#ffffff"
+                  $secondaryTextColor="rgba(10, 132, 255, 1.0)"
+                >
+                  Add Students
+                </ButtonComponent>
+                <ButtonComponent
+                  type="button"
+                  id="take-attendance"
+                  onClick={() => {
+                    console.log("redirecting");
+                    history.push(
+                      `/course-page/${course.courseCode}/${course.courseSlot}/attendance-page`
+                    );
+                  }}
+                  $primaryColor="rgba(255, 255, 255, 1.0)"
+                  $primaryTextColor="#ffffff"
+                  $secondaryColor="#ffffff"
+                  $secondaryTextColor="rgba(255, 255, 255, 1.0)"
+                >
+                  + Attendance
+                </ButtonComponent>
+                <ButtonComponent
+                  type="button"
+                  id="btn-2"
+                  onClick={() =>
+                    history.push(
+                      `/course-page/${course.courseCode}/${course.courseSlot}/edit-attendance`
+                    )
+                  }
+                  $primaryColor="rgba(10, 132, 255, 1.0)"
+                  $primaryTextColor="#ffffff"
+                  $secondaryColor="#ffffff"
+                  $secondaryTextColor="rgba(10, 132, 255, 1.0)"
+                >
+                  Edit
+                </ButtonComponent>
+                <ButtonComponent
+                  type="button"
+                  id="btn-2"
+                  onClick={() => history.push("/course-page")}
+                  $primaryColor="rgba(192, 57, 43, 1.0)"
+                  $primaryTextColor="#ffffff"
+                  $secondaryColor="#ffffff"
+                  $secondaryTextColor="rgba(192, 57, 43, 1.0)"
+                >
+                  Go Back
+                </ButtonComponent>
+                <div
+                  onClick={() => toggleDeleteModal(true)}
+                  className="delete-course-button"
+                >
+                  <img
+                    src={
+                      process.env.PUBLIC_URL +
+                      "/assets/icons/course-info-icons/delete_icon.svg"
+                    }
+                    alt="Delete Course Icon"
+                    className="delete-course-icon"
+                  />
+                </div>
+              </div>
+              <DeleteCourseModalComponent
+                show={deleteModal}
+                onHide={() => toggleDeleteModal(false)}
+                course={course}
+              />
+            </div>
           </div>
-          <div
-            onClick={() => toggleDeleteModal(true)}
-            className="delete-course-button"
-          >
-            <img
-              src={
-                process.env.PUBLIC_URL +
-                "/assets/icons/course-info-icons/delete_icon.svg"
-              }
-              alt="Delete Course Icon"
-              className="delete-course-icon"
-            />
+
+          <div className="col-sm-12 col-md-auto">
+            <div className="container" id="table">
+              <StudentReviewTableComponent studentList={studentList} />
+            </div>
           </div>
         </div>
-        <StudentReviewTableComponent studentList={studentList} />
-        <div className="course-info-button-placement">
-          <ButtonComponent
-            type="button"
-            onClick={() =>
-              history.push(
-                `/course-page/${course.courseCode}/${course.courseSlot}/add-students`
-              )
-            }
-            $primaryColor="#007aff"
-            $primaryTextColor="#ffffff"
-            $secondaryColor="#ffffff"
-            $secondaryTextColor="#007aff"
-          >
-            Add Students
-          </ButtonComponent>
-          <ButtonComponent
-            type="button"
-            onClick={() => {
-              console.log("redirecting");
-              history.push(
-                `/course-page/${course.courseCode}/${course.courseSlot}/attendance-page`
-              );
-            }}
-            $primaryColor="rgba(39, 174, 96, 1.0)"
-            $primaryTextColor="#ffffff"
-            $secondaryColor="#ffffff"
-            $secondaryTextColor="rgba(39, 174, 96, 1.0)"
-          >
-            Take Attendance
-          </ButtonComponent>
-          <ButtonComponent
-            type="button"
-            onClick={() =>
-              history.push(
-                `/course-page/${course.courseCode}/${course.courseSlot}/edit-attendance`
-              )
-            }
-            $primaryColor="rgba(243, 156, 18, 1.0)"
-            $primaryTextColor="#ffffff"
-            $secondaryColor="#ffffff"
-            $secondaryTextColor="rgba(243, 156, 18, 1.0)"
-          >
-            Edit Attendance
-          </ButtonComponent>
-          <ButtonComponent
-            type="button"
-            onClick={() => history.push("/course-page")}
-            $primaryColor="rgba(192, 57, 43, 1.0)"
-            $primaryTextColor="#ffffff"
-            $secondaryColor="#ffffff"
-            $secondaryTextColor="rgba(192, 57, 43, 1.0)"
-          >
-            Go Back
-          </ButtonComponent>
-        </div>
-        <DeleteCourseModalComponent
-          show={deleteModal}
-          onHide={() => toggleDeleteModal(false)}
-          course={course}
-        />
       </div>
     );
   }
+  // return <div>{course}</div>;
 }
 
 const mapStateToProps = createStructuredSelector({

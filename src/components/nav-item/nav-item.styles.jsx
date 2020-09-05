@@ -30,14 +30,14 @@ export const NavItemLink = styled(Link)`
   }
 
   span {
-    color: ${(props) => props.$primaryLinkColor || "#b6b6b6"};
+    color: ${(props) => props.$primaryLinkColor || "#0a84ff"};
     text-overflow: clip;
     font-size: 1.15rem;
     margin: 0 1.15rem;
   }
 
   &:hover {
-    background-color: ${(props) => props.$secondaryBgColor || "#141414"};
+    background-color: ${(props) => props.$secondaryBgColor || "#0a84ff"};
     /* border-radius: 8px; */
 
     img {

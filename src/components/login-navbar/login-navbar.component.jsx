@@ -10,12 +10,15 @@ function LoginNavbarComponent() {
       <div className="login-navbar-brand">DAS</div>
       <div className="login-navbar-item-container">
         <NavItemComponent
+          id="login"
           to="/login"
           iconSrc={
             process.env.PUBLIC_URL +
             "/assets/icons/login-nav-icons/login_icon.svg"
           }
-          $secondaryIconColor="#007aff"
+          $primaryBgColor="#ffffff"
+          $primaryIconColor="#0a84ff"
+          $secondaryIconColor="#ffffff"
           $iconAnimation="enlarge"
           $disableIconPopover
         >
@@ -24,12 +27,15 @@ function LoginNavbarComponent() {
       </div>
       <div className="login-navbar-item-container">
         <NavItemComponent
+          id="register"
           to="/register"
           iconSrc={
             process.env.PUBLIC_URL +
             "/assets/icons/login-nav-icons/register_icon.svg"
           }
-          $secondaryIconColor="#00ff7a"
+          $secondaryIconColor="#ffffff"
+          $primaryBgColor="#ffffff"
+          $primaryIconColor="#0a84ff"
           $iconAnimation="enlarge"
           $disableIconPopover
         >
