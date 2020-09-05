@@ -119,16 +119,18 @@ function AddCourseFormComponent({
         <div className="add-course-button-container">
           <ButtonComponent
             type="submit"
+            id="confirm"
             value="Submit Add Course"
-            $primaryColor="rgba(39, 174, 96, 1.0)"
+            $primaryColor="#23232e"
             $primaryTextColor="#ffffff"
             $secondaryColor="#ffffff"
-            $secondaryTextColor="rgba(39, 174, 96, 1.0)"
+            $secondaryTextColor="#ffffff"
           >
             {addCourseInProgress ? <ButtonSpinnerComponent /> : "Add Course"}
           </ButtonComponent>
           <ButtonComponent
             type="button"
+            id="btn"
             onClick={() => history.push("/course-page")}
             $primaryColor="rgba(192, 57, 43, 1.0)"
             $primaryTextColor="#ffffff"

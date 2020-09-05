@@ -133,8 +133,10 @@ function CourseInfoComponent({
           </div>
 
           <div className="col-sm-12 col-md-auto">
-            <div className="container" id="table">
+            <div className="table-container">
+              {/* <div className="container" id="table"> */}
               <StudentReviewTableComponent studentList={studentList} />
+              {/* </div> */}
             </div>
           </div>
         </div>

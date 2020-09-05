@@ -13,6 +13,8 @@ import {
   selectSessionToken,
 } from "../../redux/user/user.selectors";
 
+import "./attendance-form-modal.styles.scss";
+
 import {
   StyledModalBody,
   StyledModalFooter,
@@ -136,11 +138,12 @@ function AttendanceFormModalComponent({
             />
             <ButtonComponent
               type="submit"
+              id="start-session"
               value="Submit Session Details"
-              $primaryColor="#2ecc71"
+              $primaryColor="#8fd158"
               $primaryTextColor="#ffffff"
               $secondaryColor="#ffffff"
-              $secondaryTextColor="#2ecc71"
+              $secondaryTextColor="#8fd158"
             >
               Start Session
             </ButtonComponent>
@@ -153,10 +156,11 @@ function AttendanceFormModalComponent({
               onHide();
             }}
             type="button"
-            $primaryColor="#e74c3c"
+            id="start-session"
+            $primaryColor="rgba(192, 57, 43, 1.0)"
             $primaryTextColor="#ffffff"
             $secondaryColor="#ffffff"
-            $secondaryTextColor="#e74c3c"
+            $secondaryTextColor="rgba(192, 57, 43, 1.0)"
           >
             Close
           </ButtonComponent>
