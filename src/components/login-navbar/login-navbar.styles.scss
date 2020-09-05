@@ -28,13 +28,13 @@
   }
 }
 
-#Login:hover,
-#Login:active {
+#login:hover,
+#login:active {
   letter-spacing: 0px;
 }
 
-#Login:after,
-#Login:before {
+#login:after,
+#login:before {
   backface-visibility: hidden;
   border: 1px solid rgba(#fff, 0);
   bottom: 0px;
@@ -46,27 +46,27 @@
   width: 0;
 }
 
-#Login:hover:after,
-#Login:hover:before {
+#login:hover:after,
+#login:hover:before {
   backface-visibility: hidden;
   // border-color: #fff;
   // transition: width 350ms ease-in-out;
   width: 20%;
 }
 
-#Login:hover:before {
+#login:hover:before {
   bottom: auto;
   top: 0;
   width: 20%;
 }
 
-#Register:hover,
-#Register:active {
+#register:hover,
+#register:active {
   letter-spacing: 0px;
 }
 
-#Register:after,
-#Register:before {
+#register:after,
+#register:before {
   backface-visibility: hidden;
   border: 1px solid rgba(#fff, 0);
   bottom: 0px;
@@ -78,15 +78,15 @@
   width: 0;
 }
 
-#Register:hover:after,
-#Register:hover:before {
+#register:hover:after,
+#register:hover:before {
   backface-visibility: hidden;
   // border-color: #fff;
   // transition: width 350ms ease-in-out;
   width: 20%;
 }
 
-#Register:hover:before {
+#register:hover:before {
   bottom: auto;
   top: 0;
   width: 20%;
