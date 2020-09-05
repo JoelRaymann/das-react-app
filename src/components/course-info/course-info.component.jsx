@@ -145,7 +145,6 @@ function CourseInfoComponent({
         
     );
   }
-  // return <div>{course}</div>;
 }
 
 const mapStateToProps = createStructuredSelector({
