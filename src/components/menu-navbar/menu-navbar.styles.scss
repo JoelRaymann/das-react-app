@@ -10,10 +10,8 @@
   justify-content: flex-end;
 
   .menu-navbar-brand {
-
     color: #000000;
     cursor: pointer;
-
     font-size: 2rem;
     margin: 0.5rem 1rem;
     margin-right: auto;
@@ -31,82 +29,80 @@
   }
 }
 
-#addCourse {
+#add-course {
   // border-radius: 5px;
   justify-items: center;
   padding: 10px 10px;
-  
-} 
+}
 
-#Menu {
+#menu-item {
   // border-radius: 5px;
   justify-items: center;
   padding: 10px 30px;
   letter-spacing: 0;
   // background-color: #ffffff;
-
 }
 
-#Menu:hover,
-#Menu:active {
-letter-spacing: 0px;
+#menu-item:hover,
+#menu-item:active {
+  letter-spacing: 0px;
 }
 
-#Menu:after,
-#Menu:before {
-backface-visibility: hidden;
-border: 1px solid rgba(#fff, 0);
-bottom: 0px;
-content: " ";
-display: block;
-margin: 0 auto;
-position: absolute;
-transition: all 280ms ease-in-out;
-width: 0;
+#menu-item:after,
+#menu-item:before {
+  backface-visibility: hidden;
+  border: 1px solid rgba(#fff, 0);
+  bottom: 0px;
+  content: " ";
+  display: block;
+  margin: 0 auto;
+  position: absolute;
+  transition: all 280ms ease-in-out;
+  width: 0;
 }
 
-#Menu:hover:after,
-#Menu:hover:before {
-backface-visibility: hidden;
-// border-color: #fff;
-// transition: width 350ms ease-in-out;
-width: 20%;
+#menu-item:hover:after,
+#menu-item:hover:before {
+  backface-visibility: hidden;
+  // border-color: #fff;
+  // transition: width 350ms ease-in-out;
+  width: 20%;
 }
 
-#Menu:hover:before {
-bottom: auto;
-top: 0;
-width: 20%;
+#menu-item:hover:before {
+  bottom: auto;
+  top: 0;
+  width: 20%;
 }
 
-#addCourse:hover,
-#addCourse:active {
-letter-spacing: 0px;
+#add-course:hover,
+#add-course:active {
+  letter-spacing: 0px;
 }
 
-#addCourse:after,
-#addCourse:before {
-backface-visibility: hidden;
-border: 1px solid rgba(#fff, 0);
-bottom: 0px;
-content: " ";
-display: block;
-margin: 0 auto;
-position: absolute;
-transition: all 280ms ease-in-out;
-width: 0;
+#add-course:after,
+#add-course:before {
+  backface-visibility: hidden;
+  border: 1px solid rgba(#fff, 0);
+  bottom: 0px;
+  content: " ";
+  display: block;
+  margin: 0 auto;
+  position: absolute;
+  transition: all 280ms ease-in-out;
+  width: 0;
 }
 
-#addCourse:hover:after,
-#addCourse:hover:before {
-backface-visibility: hidden;
-// border-color: #fff;
-// transition: width 350ms ease-in-out;
-width: 20%;
+#add-course:hover:after,
+#add-course:hover:before {
+  backface-visibility: hidden;
+  // border-color: #fff;
+  // transition: width 350ms ease-in-out;
+  width: 20%;
 }
 
-#addCourse:hover:before {
-bottom: auto;
-top: 0;
-width: 20%;
+#add-course:hover:before {
+  bottom: auto;
+  top: 0;
+  width: 20%;
 }

@@ -16,7 +16,6 @@ function StudentReviewTableComponent({ studentList }) {
   }
 
   return (
-
     <table className="student-review-table-container">
       <TableRowComponent
         rowData={{
@@ -51,7 +50,6 @@ function StudentReviewTableComponent({ studentList }) {
         );
       })}
     </table>
-
   );
 }
 

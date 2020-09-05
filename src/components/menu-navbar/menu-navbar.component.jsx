@@ -29,13 +29,13 @@ function MenuNavbarComponent({ currentUser, brand }) {
         onClick={() => history.push("/course-page/add-course")}
       >
         <NavItemComponent
-        id="addCourse"
+          id="add-course"
           to="#"
           $disableIconPopover
-          $primaryBgColor = "#0a84ff"
-          $secondaryBgColor = "#ffffff"
-          $primaryLinkColor = "#ffffff"
-          $secondaryLinkColor = "#0a84ff"
+          $primaryBgColor="#0a84ff"
+          $secondaryBgColor="#ffffff"
+          $primaryLinkColor="#ffffff"
+          $secondaryLinkColor="#0a84ff"
         >
           Add Courses
         </NavItemComponent>
@@ -46,18 +46,17 @@ function MenuNavbarComponent({ currentUser, brand }) {
       >
         <NavItemComponent
           to="#"
-          id="Menu"
+          id="menu-item"
           iconSrc={
-            process.env.PUBLIC_URL +
-            "/assets/icons/nav-option-icons/pass.svg"
+            process.env.PUBLIC_URL + "/assets/icons/nav-option-icons/pass.svg"
           }
           $disableIconPopover
-          $primaryBgColor = "#ffffff"
+          $primaryBgColor="#ffffff"
           // $secondaryBgColor = "#23232e"
           $primaryIconColor="#0a84ff"
-          $secondaryIconColor = "#ffffff"
-          $primaryLinkColor = "#0a84ff"
-          $secondaryLinkColor = "#ffffff"
+          $secondaryIconColor="#ffffff"
+          $primaryLinkColor="#0a84ff"
+          $secondaryLinkColor="#ffffff"
           $iconAnimation="enlarge"
         >
           Menu

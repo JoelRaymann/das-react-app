@@ -2,12 +2,12 @@ import styled, { css } from "styled-components";
 
 export const StyledTableRowComponent = styled.li`
   border-radius: 4px;
-  border-collapse : collapse;
+  border-collapse: collapse;
   margin: 3px 3px;
   padding: 15px 15px;
   display: flex;
   font-weight: 500;
-  border-bottom : 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
   // justify-content: space-between;
   color: ${(props) => props.$primaryTextColor || "#000000"};
   background-color: ${(props) => props.$primaryBgColor || "#ffffff"};
@@ -38,7 +38,7 @@ export const StyledTableRowComponent = styled.li`
 
   &:hover {
     // color: ${(props) => props.$secondaryTextColor || "#ffffff"};
-    color : #fff;
+    color: #fff;
     background-color: ${(props) => props.$secondaryBgColor || "#23232e"};
   }
 
