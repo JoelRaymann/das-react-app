@@ -41,7 +41,7 @@ function PopoverComponent({ currentUser, sessionToken, userSignOutStart }) {
               process.env.PUBLIC_URL +
               "/assets/icons/nav-option-icons/add_course_icon.svg"
             }
-            $secondaryIconColor="00ff00"
+            $secondaryIconColor="ffffff"
             $disableIconPopover
           >
             Add Course
@@ -55,6 +55,7 @@ function PopoverComponent({ currentUser, sessionToken, userSignOutStart }) {
               "/assets/icons/nav-option-icons/user_icon.svg"
             }
             $disableIconPopover
+            $secondaryIconColor="ffffff"
           >
             View Profile
           </NavItemComponent>
@@ -66,7 +67,7 @@ function PopoverComponent({ currentUser, sessionToken, userSignOutStart }) {
               process.env.PUBLIC_URL +
               "/assets/icons/nav-option-icons/settings_icon.svg"
             }
-            $secondaryIconColor="ffff00"
+            $secondaryIconColor="ffffff"
             $iconAnimation="rotate"
             $disableIconPopover
           >
@@ -80,7 +81,8 @@ function PopoverComponent({ currentUser, sessionToken, userSignOutStart }) {
               process.env.PUBLIC_URL +
               "/assets/icons/nav-option-icons/logout_icon.svg"
             }
-            $secondaryIconColor="ff0000"
+            $secondaryIconColor="#FFFFFF"
+            $secondaryBgColor="#F44336"
             $iconAnimation="enlarge"
             $disableIconPopover
           >

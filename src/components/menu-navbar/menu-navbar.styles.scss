@@ -36,17 +36,17 @@
 } 
 
 #Menu {
-  border-radius: 5px;
+  // border-radius: 5px;
   justify-items: center;
   padding: 10px 30px;
   letter-spacing: 0;
-  background-color: #ffffff;
+  // background-color: #ffffff;
 
 }
 
 #Menu:hover,
 #Menu:active {
-letter-spacing: 1px;
+letter-spacing: 0px;
 }
 
 #Menu:after,

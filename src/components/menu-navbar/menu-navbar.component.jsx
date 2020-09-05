@@ -46,10 +46,19 @@ function MenuNavbarComponent({ currentUser, brand }) {
       >
         <NavItemComponent
           to="#"
-          $disableIconPopover
           id="Menu"
+          iconSrc={
+            process.env.PUBLIC_URL +
+            "/assets/icons/nav-option-icons/pass.svg"
+          }
+          $disableIconPopover
           $primaryBgColor = "#ffffff"
-          $secondaryLinkColor = "#0a84ff"
+          // $secondaryBgColor = "#23232e"
+          $primaryIconColor="#0a84ff"
+          $secondaryIconColor = "#ffffff"
+          $primaryLinkColor = "#0a84ff"
+          $secondaryLinkColor = "#ffffff"
+          $iconAnimation="enlarge"
         >
           Menu
         </NavItemComponent>
