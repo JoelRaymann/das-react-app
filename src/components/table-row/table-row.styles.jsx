@@ -24,7 +24,7 @@ export const StyledTableRowComponent = styled.li`
       : ""}
 
   div {
-    text-transform: ${(props) => (props.$header ? "uppercase" : "uppercase")};
+    text-transform: ${(props) => (props.$header ? "uppercase" : null)};
     flex-basis: ${(props) => `${Math.round(90 / (props.$columns - 1 || 2))}%`};
 
     ${(props) =>
