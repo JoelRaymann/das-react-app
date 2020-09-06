@@ -66,9 +66,10 @@
 
   .table-container {
     display: flex;
-    align-content: space-between;
+    // align-content: space-between;
     justify-content: center;
     align-items: center;
+    position: relative;
   }
 }
 
@@ -89,7 +90,7 @@
   bottom: 0px;
   content: " ";
   display: block;
-  margin: 0 auto;
+  margin: 20px auto;
   position: absolute;
   transition: all 280ms ease-in-out;
   width: 0;
@@ -110,17 +111,20 @@
 }
 
 .course-infocard-container {
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  // flex-flow: column;
+  // position: absolute;
   font-family: "Poppins", sans-serif;
   // margin: 100px 60px;
   width: 300px;
-  min-height: 700px;
+  height: 700px;
   transition: 0.5s;
-  // position: relative;
+  position: relative;
   background-color: #23232e;
-  display: flex;
   justify-content: center;
   align-items: center;
+  align-content: center;
   margin: 3em 5em;
   padding: 0px auto;
   padding-right: 10px;
@@ -147,7 +151,7 @@
   bottom: 0px;
   content: " ";
   display: block;
-  margin: 0 auto;
+  margin: 20px auto;
   position: absolute;
   transition: all 280ms ease-in-out;
   width: 0;

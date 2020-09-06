@@ -19,6 +19,8 @@ import {
   StyledModalFooter,
 } from "./delete-course-modal.styles";
 
+import "./delete-course-modal.styles.scss";
+
 function DeleteCourseModalComponent({
   show,
   onHide,
@@ -101,6 +103,7 @@ function DeleteCourseModalComponent({
           <ButtonComponent
             onClick={onHide}
             disabled={isDeletingCourse}
+            id="go-back"
             type="button"
             $primaryColor="rgba(192, 57, 43,1.0)"
             $primaryTextColor="#ffffff"

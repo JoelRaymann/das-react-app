@@ -43,8 +43,9 @@ function CourseInfoComponent({
     return (
       <div className="course-info-container">
         <div className="row">
-          <div className="course-infocard-container">
-            <div className="col-sm-12 col-md-7">
+          {/* <div className="course-infocard-container"> */}
+          <div className="col-sm-12 col-md-3">
+            <div className="course-infocard-container">
               <div className="course-info-header-container">
                 <div className="course-info-header">
                   {`${course.courseCode}`}
@@ -110,20 +111,21 @@ function CourseInfoComponent({
                 >
                   Go Back
                 </ButtonComponent>
-                <div
-                  onClick={() => toggleDeleteModal(true)}
-                  className="delete-course-button"
-                >
-                  <img
-                    src={
-                      process.env.PUBLIC_URL +
-                      "/assets/icons/course-info-icons/delete_icon.svg"
-                    }
-                    alt="Delete Course Icon"
-                    className="delete-course-icon"
-                  />
-                </div>
               </div>
+              <div
+                onClick={() => toggleDeleteModal(true)}
+                className="delete-course-button"
+              >
+                <img
+                  src={
+                    process.env.PUBLIC_URL +
+                    "/assets/icons/course-info-icons/delete_icon.svg"
+                  }
+                  alt="Delete Course Icon"
+                  className="delete-course-icon"
+                />
+              </div>
+
               <DeleteCourseModalComponent
                 show={deleteModal}
                 onHide={() => toggleDeleteModal(false)}
@@ -132,7 +134,7 @@ function CourseInfoComponent({
             </div>
           </div>
 
-          <div className="col-sm-12 col-md-auto">
+          <div className="col-sm-12 col-md-9">
             <div className="table-container">
               {/* <div className="container" id="table"> */}
               <StudentReviewTableComponent studentList={studentList} />

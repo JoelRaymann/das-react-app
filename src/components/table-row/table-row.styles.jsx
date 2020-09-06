@@ -12,6 +12,7 @@ export const StyledTableRowComponent = styled.li`
   color: ${(props) => props.$primaryTextColor || "#000000"};
   background-color: ${(props) => props.$primaryBgColor || "#ffffff"};
   // box-shadow: 0 0 1rem 0 rgba(70, 70, 70, 0.8);
+
   ${(props) =>
     props.$header
       ? css`
@@ -23,7 +24,7 @@ export const StyledTableRowComponent = styled.li`
       : ""}
 
   div {
-    text-transform: ${(props) => (props.$header ? "uppercase" : "none")};
+    text-transform: ${(props) => (props.$header ? "uppercase" : "uppercase")};
     flex-basis: ${(props) => `${Math.round(90 / (props.$columns - 1 || 2))}%`};
 
     ${(props) =>
